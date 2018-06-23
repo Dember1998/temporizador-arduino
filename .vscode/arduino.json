@@ -1,0 +1,4 @@
+{
+    "sketch": "temporizador.ino",
+    "board": "arduino:avr:uno"
+}
