@@ -16,18 +16,17 @@ public:
   int segundos = 0;
 };
 
-class CuentaRegresiva
+class Temporizador : private Reloj
 {
 public:
-  CuentaRegresiva(Reloj r)
-  {
-    reloj = r;
-  }
-private: 
-  Reloj reloj;
+  Temporizador() {}
 
-public:
-  // cuanta hacia atras y devuelve el resultado
+  void setSegundos(int s) { segundos = s; }
+  void setMinutos(int m) { minutos = m; }
+  void setHoras(int h) { horas = h; }
+
+  // declementa y un objeto tipo cuenta regresiva
+
   Reloj iniciar()
   {
     reloj.segundos--;
@@ -46,23 +45,6 @@ public:
       reloj.horas = 0;
 
     return reloj;
-  }
-};
-
-class Temporizador : private Reloj
-{
-public:
-  Temporizador() {}
-
-  void setSegundos(int s) { segundos = s; }
-  void setMinutos(int m) { minutos = m; }
-  void setHoras(int h) { horas = h; }
-
-  // declementa y un objeto tipo cuenta regresiva
-  CuentaRegresiva decrementar()
-  {
-    Reloj reloj(horas, minutos, horas);
-    CuentaRegresiva cuenta(reloj);
   }
 };
 
