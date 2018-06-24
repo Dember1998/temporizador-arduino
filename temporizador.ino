@@ -33,7 +33,7 @@ public:
     Horas = horas;
   }
 
-  Reloj iniciar()
+  Void decrementar()
   {
     reloj.Segundos--;
     if (reloj.Segundos < 0)
@@ -49,14 +49,24 @@ public:
     }
     if (reloj.Horas < 0)
       reloj.Horas = 0;
-
-    return reloj;
   }
+
+  void verPorSerial()
+  {
+    Serial.print("segundos : ");
+    Serial.print(reloj.Segundos);
+
+    Serial.print(" minutos : ");
+    Serial.print(reloj.Minutos);
+
+    Serial.print(" horas :");
+    Serial.print(reloj.Horas);
+  }
+
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
-bool pinLed = LOW;
 void setup()
 {
   // put your setup code here, to run once:
