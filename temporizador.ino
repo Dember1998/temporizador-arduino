@@ -34,25 +34,32 @@ public:
 
   void decrementar()
   {
-    reloj.Segundos--;
-    if (reloj.Segundos < 0)
+    if (reloj.Horas == 0 && reloj.Minutos == 0 && reloj.Segundos == 0)
     {
-      reloj.Minutos--;
-      reloj.Segundos = 59;
+      return;
     }
+    else
+    {
+      reloj.Segundos--;
+      if (reloj.Segundos < 0)
+      {
+        reloj.Minutos--;
+        reloj.Segundos = 59;
+      }
 
-    if (reloj.Minutos < 0)
-    {
-      reloj.Horas--;
-      reloj.Minutos = 59;
+      if (reloj.Minutos < 0)
+      {
+        reloj.Horas--;
+        reloj.Minutos = 59;
+      }
+      if (reloj.Horas < 0)
+        reloj.Horas = 0;
     }
-    if (reloj.Horas < 0)
-      reloj.Horas = 0;
   }
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
-Temporizador temp1(0, 5, 10);
+Temporizador temp1(0, 0, 20);
 
 const int intPin = 2;
 const int btnIniciar = 13;
