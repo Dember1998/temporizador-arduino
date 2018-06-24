@@ -4,45 +4,51 @@ class Reloj
 {
 public:
   Reloj() {}
-  Reloj(int Horas, int Minutos, int Segundos)
+  Reloj(int segundos, int minutos, int horas)
   {
-    horas = Horas;
-    minutos = Minutos;
-    segundos = Segundos;
+    Horas = horas;
+    Minutos = minutos;
+    Segundos = segundos;
   }
 
-  int horas = 0;
-  int minutos = 0;
-  int segundos = 0;
+  int Horas = 0;
+  int Minutos = 0;
+  int Segundos = 0;
 };
 
 class Temporizador : private Reloj
 {
+private:
+  Reloj reloj;
+
 public:
-  Temporizador() {}
+  Temporizador(int segundos, int minutos, int horas)
+  {
+    reloj.Segundos = segundos;
+    reloj.Minutos = minutos;
+    reloj.Horas = horas;
 
-  void setSegundos(int s) { segundos = s; }
-  void setMinutos(int m) { minutos = m; }
-  void setHoras(int h) { horas = h; }
-
-  // declementa y un objeto tipo cuenta regresiva
+    Segundos = segundos;
+    Minutos = minutos;
+    Horas = horas;
+  }
 
   Reloj iniciar()
   {
-    reloj.segundos--;
-    if (reloj.segundos < 0)
+    reloj.Segundos--;
+    if (reloj.Segundos < 0)
     {
-      reloj.minutos--;
-      reloj.segundos = 59;
+      reloj.Minutos--;
+      reloj.Segundos = 59;
     }
 
-    if (reloj.minutos < 0)
+    if (reloj.Minutos < 0)
     {
-      reloj.horas--;
-      reloj.minutos = 59;
+      reloj.Horas--;
+      reloj.Minutos = 59;
     }
-    if (reloj.horas < 0)
-      reloj.horas = 0;
+    if (reloj.Horas < 0)
+      reloj.Horas = 0;
 
     return reloj;
   }
@@ -50,18 +56,12 @@ public:
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
-Temporizador temp;
-
 bool pinLed = LOW;
 void setup()
 {
   // put your setup code here, to run once:
-  temp.setSegundos(10);
-  temp.setMinutos(2);
-  temp.setHoras(0);
 
   Serial.begin(9600);
-  verTemporizador(temp.decrementar().iniciar());
 }
 
 void loop()
@@ -72,11 +72,11 @@ void loop()
 void verTemporizador(Reloj reloj)
 {
   Serial.print("segundos : ");
-  Serial.print(reloj.segundos);
+  Serial.print(reloj.Segundos);
 
   Serial.print(" minutos : ");
-  Serial.print(reloj.segundos);
+  Serial.print(reloj.Minutos);
 
   Serial.print(" horas :");
-  Serial.print(reloj.segundos);
+  Serial.print(reloj.Horas);
 }
