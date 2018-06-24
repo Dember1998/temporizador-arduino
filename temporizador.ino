@@ -16,47 +16,57 @@ public:
   int segundos = 0;
 };
 
-class CuentaRegresiva : Reloj
+class CuentaRegresiva
 {
 public:
-  CuentaRegresiva(Reloj reloj)
+  CuentaRegresiva(Reloj r)
   {
-    horas = reloj.horas;
-    minutos = reloj.minutos;
-    segundos = reloj.segundos;
+    reloj = r;
   }
 
+  Reloj reloj;
   // cuanta hacia atras y devuelve el resultado
   Reloj iniciar()
   {
-    if (segundos < 0)
+    if (reloj.segundos < 0)
     {
-      minutos--;
-      segundos = 59;
+      reloj.minutos--;
+      reloj.segundos = 59;
     }
 
-    if (minutos < 0)
+    if (reloj.minutos < 0)
     {
-      horas--;
-      minutos = 59;
+      reloj.horas--;
+      reloj.minutos = 59;
     }
-    if (horas < 0)
-      horas = 0;
-    Reloj r(horas, minutos, segundos);
-    return r;
+    if (reloj.horas < 0)
+      reloj.horas = 0;
+    return reloj;
   }
 };
+
+class Temporizador
+{
+public:
+  Temporizador() {}
+}
+
 Reloj r(1, 2, 3);
 Reloj temporizadores[] = {r};
 
-LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+// LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
 bool pinLed = LOW;
 void setup()
 {
   // put your setup code here, to run once:
-  lcd.begin(16, 2);
-  lcd.print("hola con arduino");
+  Serial.begin(9600);
+  Reloj temp = temporizadores[0];
+  Serial.println("segundos =");
+  Serial.println(temp.segundos);
+
+  Serial.println("minutos =");
+  Serial.println(temp.minutos);
 }
 
 void loop()
