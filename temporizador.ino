@@ -33,7 +33,7 @@ public:
     Horas = horas;
   }
 
-  Void decrementar()
+  void decrementar()
   {
     reloj.Segundos--;
     if (reloj.Segundos < 0)
@@ -62,16 +62,16 @@ public:
     Serial.print(" horas :");
     Serial.print(reloj.Horas);
   }
-
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
-
+Temporizador temp1(10, 5, 0);
 void setup()
 {
   // put your setup code here, to run once:
-
   Serial.begin(9600);
+  temp1.verPorSerial();
+  temp1.decrementar();
 }
 
 void loop()
@@ -79,7 +79,7 @@ void loop()
   // put your main code here, to run repeatedly:
 }
 
-void verTemporizador(Reloj reloj)
+void verPorSerial(Reloj reloj)
 {
   Serial.print("segundos : ");
   Serial.print(reloj.Segundos);
