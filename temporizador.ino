@@ -25,6 +25,8 @@ public:
   }
 
   Reloj reloj;
+
+public:
   // cuanta hacia atras y devuelve el resultado
   Reloj iniciar()
   {
@@ -41,18 +43,35 @@ public:
     }
     if (reloj.horas < 0)
       reloj.horas = 0;
-    return reloj;
+
+      return reloj;
   }
 };
 
-class Temporizador
+class Temporizador : private Reloj
 {
 public:
-  Temporizador() {}
-}
+  Temporizador() {
 
-Reloj r(1, 2, 3);
-Reloj temporizadores[] = {r};
+  }
+
+  void setSegundos(int s) { segundos = s; }
+  void setMinutos(int m) { minutos = m; }
+  void setHoras(int h) { horas = h; }
+
+  Reloj getReloj()
+  {
+    Reloj reloj(horas, minutos, horas);
+    return reloj;
+  }
+
+// declementa y un objeto tipo cuenta regresiva
+  CuentaRegresiva decrementar()
+  {
+    Reloj reloj(horas, minutos, horas);
+    CuentaRegresiva cuenta(reloj);
+  }
+};
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
@@ -60,13 +79,6 @@ bool pinLed = LOW;
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  Reloj temp = temporizadores[0];
-  Serial.println("segundos =");
-  Serial.println(temp.segundos);
-
-  Serial.println("minutos =");
-  Serial.println(temp.minutos);
 }
 
 void loop()
