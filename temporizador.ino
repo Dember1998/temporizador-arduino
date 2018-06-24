@@ -4,7 +4,7 @@ class Reloj
 {
 public:
   Reloj() {}
-  Reloj(int segundos, int minutos, int horas)
+  Reloj(int horas, int minutos, int segundos)
   {
     Horas = horas;
     Minutos = minutos;
@@ -22,7 +22,7 @@ private:
   Reloj reloj;
 
 public:
-  Temporizador(int segundos, int minutos, int horas)
+  Temporizador(int horas, int minutos, int segundos)
   {
     reloj.Segundos = segundos;
     reloj.Minutos = minutos;
@@ -53,19 +53,19 @@ public:
 
   void verPorSerial()
   {
-    Serial.print("segundos : ");
-    Serial.print(reloj.Segundos);
+    Serial.print(" horas : ");
+    Serial.print(reloj.Horas);
 
     Serial.print(" minutos : ");
     Serial.print(reloj.Minutos);
 
-    Serial.print(" horas :");
-    Serial.print(reloj.Horas);
+    Serial.print(" segundos : ");
+    Serial.println(reloj.Segundos);
   }
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
-Temporizador temp1(10, 5, 0);
+Temporizador temp1(0, 5, 10);
 void setup()
 {
   // put your setup code here, to run once:
