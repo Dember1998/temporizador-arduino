@@ -18,9 +18,6 @@ public:
 
 class Temporizador : private Reloj
 {
-private:
-  Reloj reloj;
-
 public:
   Temporizador(int horas, int minutos, int segundos)
   {
@@ -32,6 +29,8 @@ public:
     Minutos = minutos;
     Horas = horas;
   }
+
+  Reloj reloj;
 
   void decrementar()
   {
@@ -50,18 +49,6 @@ public:
     if (reloj.Horas < 0)
       reloj.Horas = 0;
   }
-
-  void verPorSerial()
-  {
-    Serial.print(" horas : ");
-    Serial.print(reloj.Horas);
-
-    Serial.print(" minutos : ");
-    Serial.print(reloj.Minutos);
-
-    Serial.print(" segundos : ");
-    Serial.println(reloj.Segundos);
-  }
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
@@ -70,8 +57,9 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  temp1.verPorSerial();
+  verPorSerial(temp1);
   temp1.decrementar();
+  verPorSerial(temp1);
 }
 
 void loop()
@@ -79,14 +67,14 @@ void loop()
   // put your main code here, to run repeatedly:
 }
 
-void verPorSerial(Reloj reloj)
+void verPorSerial(Temporizador r)
 {
-  Serial.print("segundos : ");
-  Serial.print(reloj.Segundos);
+  Serial.print(" horas : ");
+  Serial.print(r.reloj.Horas);
 
   Serial.print(" minutos : ");
-  Serial.print(reloj.Minutos);
+  Serial.print(r.reloj.Minutos);
 
-  Serial.print(" horas :");
-  Serial.print(reloj.Horas);
+  Serial.print(" segundos : ");
+  Serial.println(r.reloj.Segundos);
 }
