@@ -18,7 +18,6 @@ public:
 
 class Temporizador : private Reloj
 {
-
 private:
   int instancias;
 
@@ -78,6 +77,10 @@ public:
     {
       cnt++;
     }
+    else
+    {
+      cnt = 0;
+    }
   }
 
   void decrementar()
@@ -92,6 +95,7 @@ public:
 
   void setLimite(int limite = 0) { Limite = limite; }
 };
+
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 Temporizador temp1(0, 0, 20), temp2(1, 2, 3);
@@ -134,7 +138,7 @@ void loop()
 
   if (digitalRead(btnChange) == HIGH)
   {
-    delay(200);
+    delay(300);
     cambiar.incrementar();
     verPorSerial(listTemporizadores[cambiar.getContador()]);
   }
