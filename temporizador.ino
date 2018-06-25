@@ -98,6 +98,10 @@ void loop()
 
 void verPorSerial(Temporizador r)
 {
+  Serial.print("Temporizador ");
+  Serial.print(r.getInstancia());
+  Serial.print("-> ");
+
   Serial.print(" horas : ");
   Serial.print(r.reloj.Horas);
 
