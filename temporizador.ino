@@ -20,6 +20,7 @@ class Temporizador : private Reloj
 {
 private:
   int instancias;
+  bool activar = false;
 
 public:
   Temporizador(int horas, int minutos, int segundos)
@@ -37,30 +38,35 @@ public:
 
   void setInstancia(int i) { instancias = i; }
   int getInstancia() { return instancias; }
+  void Activar() { activar = true; }
+  void desActivar() { activar = false; }
 
   void decrementar()
   {
+    if (!activar)
+    {
+      return;
+    }
+    
     if (reloj.Horas == 0 && reloj.Minutos == 0 && reloj.Segundos == 0)
     {
       return;
     }
-    else
-    {
-      reloj.Segundos--;
-      if (reloj.Segundos < 0)
-      {
-        reloj.Minutos--;
-        reloj.Segundos = 59;
-      }
 
-      if (reloj.Minutos < 0)
-      {
-        reloj.Horas--;
-        reloj.Minutos = 59;
-      }
-      if (reloj.Horas < 0)
-        reloj.Horas = 0;
+    reloj.Segundos--;
+    if (reloj.Segundos < 0)
+    {
+      reloj.Minutos--;
+      reloj.Segundos = 59;
     }
+
+    if (reloj.Minutos < 0)
+    {
+      reloj.Horas--;
+      reloj.Minutos = 59;
+    }
+    if (reloj.Horas < 0)
+      reloj.Horas = 0;
   }
 };
 
@@ -95,7 +101,6 @@ public:
 
   void setLimite(int limite = 0) { Limite = limite; }
 };
-
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 Temporizador temp1(0, 0, 20), temp2(1, 2, 3);
