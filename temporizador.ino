@@ -47,7 +47,7 @@ public:
     {
       return;
     }
-    
+
     if (reloj.Horas == 0 && reloj.Minutos == 0 && reloj.Segundos == 0)
     {
       return;
@@ -167,6 +167,9 @@ void verPorSerial(Temporizador r)
 
 void blink()
 {
-  verPorSerial(listTemporizadores[cambiar.getContador()]);
-  listTemporizadores[cambiar.getContador()].decrementar();
+  for (int list = 0; list < 2; list++)
+  {
+    verPorSerial(listTemporizadores[list]);
+    listTemporizadores[list].decrementar();
+  }
 }
