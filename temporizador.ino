@@ -65,27 +65,58 @@ public:
   }
 };
 
+class Change
+{
+private:
+  int cnt = 0;
+  int Limite = 0;
+
+public:
+  void incrementar()
+  {
+    if (cnt < Limite)
+    {
+      cnt++;
+    }
+  }
+
+  void decrementar()
+  {
+    if (cnt > Limite)
+    {
+      cnt--;
+    }
+  }
+
+  int getContador() { return cnt; };
+
+  void setLimite(int limite = 0) { Limite = limite; }
+};
+
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 Temporizador temp1(0, 0, 20), temp2(1, 2, 3);
-
+Change cambiar;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
 const int btnIniciar = 13;
 const int btnDetener = 12;
+const int btnChange = 11;
 
 void setup()
 {
-
   listTemporizadores[0].setInstancia(1);
   listTemporizadores[1].setInstancia(2);
-
+  cambiar.setLimite(1);
   // put your setup code here, to run once:
   Serial.begin(9600);
 
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
   pinMode(btnDetener, INPUT);
+  pinMode(btnChange, INPUT);
+
+  verPorSerial(listTemporizadores[cambiar.getContador()]);
 }
 
 void loop()
@@ -99,6 +130,13 @@ void loop()
   if (digitalRead(btnDetener) == HIGH)
   {
     detachInterrupt(digitalPinToInterrupt(intPin));
+  }
+
+  if (digitalRead(btnChange) == HIGH)
+  {
+    delay(200);
+    cambiar.incrementar();
+    verPorSerial(listTemporizadores[cambiar.getContador()]);
   }
 }
 
@@ -120,6 +158,6 @@ void verPorSerial(Temporizador r)
 
 void blink()
 {
-  verPorSerial(listTemporizadores[1]);
-  listTemporizadores[1].decrementar();
+  verPorSerial(listTemporizadores[cambiar.getContador()]);
+  listTemporizadores[cambiar.getContador()].decrementar();
 }
