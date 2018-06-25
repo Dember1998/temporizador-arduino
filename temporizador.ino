@@ -18,7 +18,9 @@ public:
 
 class Temporizador : private Reloj
 {
+
 public:
+  static int instancias;
   Temporizador(int horas, int minutos, int segundos)
   {
     reloj.Segundos = segundos;
@@ -28,9 +30,13 @@ public:
     Segundos = segundos;
     Minutos = minutos;
     Horas = horas;
+
+    instancias++;
   }
 
   Reloj reloj;
+
+  int getInstancia() { return instancias; }
 
   void decrementar()
   {
@@ -59,7 +65,8 @@ public:
 };
 
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
-Temporizador temp1(0, 0, 20);
+int Temporizador::instancias = 0;
+Temporizador temp1(0, 0, 20), temp2(1,2,3);
 
 const int intPin = 2;
 const int btnIniciar = 13;
