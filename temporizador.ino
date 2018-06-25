@@ -68,6 +68,8 @@ public:
 // LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 Temporizador temp1(0, 0, 20), temp2(1, 2, 3);
 
+Temporizador listTemporizadores[] = {temp1, temp2};
+
 const int intPin = 2;
 const int btnIniciar = 13;
 const int btnDetener = 12;
@@ -75,7 +77,9 @@ const int btnDetener = 12;
 void setup()
 {
 
-  temp1.setInstancia(1);
+  listTemporizadores[0].setInstancia(1);
+  listTemporizadores[1].setInstancia(2);
+
   // put your setup code here, to run once:
   Serial.begin(9600);
 
@@ -116,6 +120,6 @@ void verPorSerial(Temporizador r)
 
 void blink()
 {
-  verPorSerial(temp1);
-  temp1.decrementar();
+  verPorSerial(listTemporizadores[1]);
+  listTemporizadores[1].decrementar();
 }
