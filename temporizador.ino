@@ -178,6 +178,7 @@ void setup()
 
   mostrar.PorSerial(listTemporizadores[cambiar.getContador()]);
   mostrar.PorLcd(listTemporizadores[cambiar.getContador()]);
+  attachInterrupt(digitalPinToInterrupt(intPin), blink, CHANGE);
 }
 
 void loop()
@@ -185,25 +186,31 @@ void loop()
   // put your main code here, to run repeatedly:
   if (digitalRead(btnIniciar) == HIGH)
   {
-    attachInterrupt(digitalPinToInterrupt(intPin), blink, CHANGE);
+    Actual().Activar();
   }
 
   if (digitalRead(btnDetener) == HIGH)
   {
-    detachInterrupt(digitalPinToInterrupt(intPin));
+    Actual().desActivar();
   }
 
   if (digitalRead(btnChange) == HIGH)
   {
     delay(300);
     cambiar.incrementar();
-    mostrar.PorSerial(listTemporizadores[cambiar.getContador()]);
+    mostrar.PorSerial(Actual());
   }
+}
+
+Temporizador Actual()
+{
+  return listTemporizadores[cambiar.getContador()];
 }
 
 void blink()
 {
-  mostrar.PorSerial(listTemporizadores[cambiar.getContador()]);
+  mostrar.PorSerial(Actual());
+  mostrar.PorLcd(Actual());
   for (int list = 0; list < 2; list++)
   {
     listTemporizadores[list].decrementar();
