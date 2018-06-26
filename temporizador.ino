@@ -25,26 +25,30 @@ private:
 public:
   Temporizador(int horas, int minutos, int segundos)
   {
-    reloj.Segundos = segundos;
-    reloj.Minutos = minutos;
-    reloj.Horas = horas;
-
     Segundos = segundos;
     Minutos = minutos;
     Horas = horas;
+    Restaurar();
   }
 
   Reloj reloj;
 
+  void Restaurar()
+  {
+    reloj.Segundos = Segundos;
+    reloj.Minutos = Minutos;
+    reloj.Horas = Horas;
+  }
+
+  void setSegundos(int s = 0) { Segundos = s; }
+  void setMinutos(int m = 0) { Minutos = m; }
+  void setHoras(int h = 0) { Horas = h; }
+
   void setInstancia(int i) { instancias = i; }
   int getInstancia() { return instancias; }
-  void Activar()
+  void IniciarDetener()
   {
-    activar = true;
-  }
-  void desActivar()
-  {
-    activar = false;
+    activar = !activar;;
   }
 
   void decrementar()
@@ -56,6 +60,8 @@ public:
 
     if (reloj.Horas == 0 && reloj.Minutos == 0 && reloj.Segundos == 0)
     {
+      Restaurar();
+      activar = false;
       return;
     }
 
@@ -157,7 +163,7 @@ public:
   }
 };
 
-Temporizador temp1(0, 1, 30), temp2(1, 2, 3);
+Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
 Change cambiar;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
@@ -192,14 +198,8 @@ void loop()
   // put your main code here, to run repeatedly:
   if (digitalRead(btnIniciar) == HIGH)
   {
-    delay(200);
-    Actual()->Activar();
-  }
-
-  if (digitalRead(btnDetener) == HIGH)
-  {
-    delay(200);
-    Actual()->desActivar();
+    delay(300);
+    Actual()->IniciarDetener();
   }
 
   if (digitalRead(btnChange) == HIGH)
