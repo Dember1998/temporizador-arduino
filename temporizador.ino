@@ -20,7 +20,7 @@ class Temporizador : private Reloj
 {
 private:
   int instancias;
-  bool activar = false;
+  bool activar;
 
 public:
   Temporizador(int horas, int minutos, int segundos)
@@ -38,12 +38,18 @@ public:
 
   void setInstancia(int i) { instancias = i; }
   int getInstancia() { return instancias; }
-  void Activar() { activar = true; }
-  void desActivar() { activar = false; }
+  void Activar()
+  {
+    activar = true;
+  }
+  void desActivar()
+  {
+    activar = false;
+  }
 
   void decrementar()
   {
-    if (!activar)
+    if (activar == false)
     {
       return;
     }
@@ -151,7 +157,7 @@ public:
   }
 };
 
-Temporizador temp1(0, 0, 20), temp2(1, 2, 3);
+Temporizador temp1(0, 1, 30), temp2(1, 2, 3);
 Change cambiar;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
@@ -176,8 +182,8 @@ void setup()
   pinMode(btnDetener, INPUT);
   pinMode(btnChange, INPUT);
 
-  mostrar.PorSerial(listTemporizadores[cambiar.getContador()]);
-  mostrar.PorLcd(listTemporizadores[cambiar.getContador()]);
+  mostrar.PorSerial(*Actual());
+  mostrar.PorLcd(*Actual());
   attachInterrupt(digitalPinToInterrupt(intPin), blink, CHANGE);
 }
 
@@ -186,31 +192,33 @@ void loop()
   // put your main code here, to run repeatedly:
   if (digitalRead(btnIniciar) == HIGH)
   {
-    Actual().Activar();
+    delay(200);
+    Actual()->Activar();
   }
 
   if (digitalRead(btnDetener) == HIGH)
   {
-    Actual().desActivar();
+    delay(200);
+    Actual()->desActivar();
   }
 
   if (digitalRead(btnChange) == HIGH)
   {
     delay(300);
     cambiar.incrementar();
-    mostrar.PorSerial(Actual());
+    mostrar.PorSerial(*Actual());
   }
 }
 
-Temporizador Actual()
+Temporizador *Actual()
 {
-  return listTemporizadores[cambiar.getContador()];
+  return &listTemporizadores[cambiar.getContador()];
 }
 
 void blink()
 {
-  mostrar.PorSerial(Actual());
-  mostrar.PorLcd(Actual());
+  // mostrar.PorSerial(Actual());
+  mostrar.PorLcd(*Actual());
   for (int list = 0; list < 2; list++)
   {
     listTemporizadores[list].decrementar();
