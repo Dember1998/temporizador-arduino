@@ -169,7 +169,7 @@ Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
 const int btnIniciar = 13;
-const int btnDetener = 12;
+const int btnMenuOk = 12;
 const int btnChange = 11;
 
 Mostrar mostrar;
@@ -185,7 +185,7 @@ void setup()
 
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
-  pinMode(btnDetener, INPUT);
+  pinMode(btnMenuOk, INPUT);
   pinMode(btnChange, INPUT);
 
   mostrar.PorSerial(*Actual());
@@ -207,6 +207,10 @@ void loop()
     delay(300);
     cambiar.incrementar();
     mostrar.PorSerial(*Actual());
+  }
+
+  if(digitalRead(btnMenuOk) == HIGH) {
+    
   }
 }
 
