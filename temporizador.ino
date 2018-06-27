@@ -164,7 +164,7 @@ public:
 };
 
 Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
-Contador cambiar;
+Contador cambiarCnt;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
@@ -179,7 +179,7 @@ void setup()
   lcd.begin(16, 2);
   listTemporizadores[0].setInstancia(1);
   listTemporizadores[1].setInstancia(2);
-  cambiar.setLimite(1);
+  cambiarCnt.setLimite(1);
   // put your setup code here, to run once:
   Serial.begin(9600);
 
@@ -205,7 +205,7 @@ void loop()
   if (digitalRead(btnChange) == HIGH)
   {
     delay(300);
-    cambiar.incrementar();
+    cambiarCnt.incrementar();
     mostrar.PorSerial(*Actual());
   }
 
@@ -216,7 +216,7 @@ void loop()
 
 Temporizador *Actual()
 {
-  return &listTemporizadores[cambiar.getContador()];
+  return &listTemporizadores[cambiarCnt.getContador()];
 }
 
 void blink()
