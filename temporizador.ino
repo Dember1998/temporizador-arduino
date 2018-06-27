@@ -48,7 +48,8 @@ public:
   int getInstancia() { return instancias; }
   void IniciarDetener()
   {
-    activar = !activar;;
+    activar = !activar;
+    ;
   }
 
   void decrementar()
@@ -103,7 +104,7 @@ public:
 
   void decrementar()
   {
-    if (cnt > Limite)
+    if (cnt > 0)
     {
       cnt--;
     }
@@ -163,14 +164,26 @@ public:
   }
 };
 
-Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
-Contador cambiarCnt;
+class Vista
+{
+  void adelante() {}
+  void atras() {}
+  Contador vistasCnt;
+  void vistaLCD(int cnt)
+  {
+  }
+};
+
+Temporizador temp1(0, 0, 20),
+    temp2(0, 1, 3);
+Contador cambiarCnt, menuCnt;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
 const int btnIniciar = 13;
 const int btnMenuOk = 12;
-const int btnChange = 11;
+const int btnIncrementar = 11;
+const int btnDecrementar = 10;
 
 Mostrar mostrar;
 
@@ -186,7 +199,8 @@ void setup()
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
   pinMode(btnMenuOk, INPUT);
-  pinMode(btnChange, INPUT);
+  pinMode(btnIncrementar, INPUT);
+  pinMode(btnDecrementar, INPUT);
 
   mostrar.PorSerial(*Actual());
   mostrar.PorLcd(*Actual());
@@ -202,15 +216,22 @@ void loop()
     Actual()->IniciarDetener();
   }
 
-  if (digitalRead(btnChange) == HIGH)
+  if (digitalRead(btnIncrementar) == HIGH)
   {
     delay(300);
     cambiarCnt.incrementar();
     mostrar.PorSerial(*Actual());
   }
 
-  if(digitalRead(btnMenuOk) == HIGH) {
+  if (digitalRead(btnDecrementar) == HIGH)
+  {
+    delay(300);
+    cambiarCnt.decrementar();
+    mostrar.PorSerial(*Actual());
+  }
 
+  if (digitalRead(btnMenuOk) == HIGH)
+  {
   }
 }
 
