@@ -82,7 +82,7 @@ public:
   }
 };
 
-class Change
+class Contador
 {
 private:
   int cnt = 0;
@@ -164,7 +164,7 @@ public:
 };
 
 Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
-Change cambiar;
+Contador cambiar;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
@@ -210,7 +210,7 @@ void loop()
   }
 
   if(digitalRead(btnMenuOk) == HIGH) {
-    
+
   }
 }
 
