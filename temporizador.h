@@ -1,26 +1,29 @@
+#ifndef temporizador_h
+#define temporizador_h
 #include <Arduino.h>
 #include "reloj.h"
 
 class Temporizador : private Reloj
 {
-  private:
-    int instancias;
-    bool activar;
+private:
+  int instancias;
+  bool activar;
 
-  public:
-    Temporizador(int horas, int minutos, int segundos);
+public:
+  Temporizador(int horas, int minutos, int segundos);
 
-    Reloj reloj;
+  Reloj reloj;
 
-    void Restaurar();
+  void Restaurar();
 
-    void setSegundos(int s = 0);
-    void setMinutos(int m = 0);
-    void setHoras(int h = 0);
+  void setSegundos(int s = 0);
+  void setMinutos(int m = 0);
+  void setHoras(int h = 0);
 
-    void setInstancia(int i);
-    int getInstancia();
-    void IniciarDetener();
+  void setInstancia(int i);
+  int getInstancia();
+  void IniciarDetener();
 
-    void decrementar();
+  void decrementar();
 };
+#endif
