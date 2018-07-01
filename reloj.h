@@ -1,3 +1,5 @@
+#ifndef reloj_h
+#define reloj_h
 #include <Arduino.h>
 
 class Reloj
@@ -15,3 +17,4 @@ class Reloj
     int Minutos = 0;
     int Segundos = 0;
 };
+#endif 
