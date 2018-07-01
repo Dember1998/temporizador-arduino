@@ -1,5 +1,6 @@
 #include <LiquidCrystal.h>
 #include "reloj.h"
+#include "contador.h"
 
 class Temporizador : private Reloj
 {
@@ -65,38 +66,6 @@ public:
     if (reloj.Horas < 0)
       reloj.Horas = 0;
   }
-};
-
-class Contador
-{
-private:
-  int cnt = 0;
-  int Limite = 0;
-
-public:
-  void incrementar()
-  {
-    if (cnt < Limite)
-    {
-      cnt++;
-    }
-    else
-    {
-      cnt = 0;
-    }
-  }
-
-  void decrementar()
-  {
-    if (cnt > Limite)
-    {
-      cnt--;
-    }
-  }
-
-  int getContador() { return cnt; };
-
-  void setLimite(int limite = 0) { Limite = limite; }
 };
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
