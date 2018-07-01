@@ -131,13 +131,17 @@ private:
   }
 
 public:
+  void verNTemp(int n = 0)
+  {
+    lcd.print("Temporizador ");
+    lcd.print(n);
+  }
+
   void PorLcd(Temporizador t)
   {
     // fila 0 "Temporizador 1"
     lcd.setCursor(0, 0);
-    lcd.print("Temporizador ");
-    lcd.print(t.getInstancia());
-
+    verNTemp(t.getInstancia());
     // fila 1 "00:00:12"
     lcd.setCursor(0, 1);
     ver(t.reloj.Horas);
@@ -164,28 +168,47 @@ public:
   }
 };
 
+Temporizador temp1(0, 0, 20),
+    temp2(0, 1, 3);
+Temporizador listTemporizadores[] = {temp1, temp2};
+Contador cambiarCnt, menuCnt;
+
+Temporizador *Actual()
+{
+  return &listTemporizadores[cambiarCnt.getContador()];
+}
+
 class Vista
 {
+private:
+
+public:
   void adelante() {}
   void atras() {}
   Contador vistasCnt;
-  void vistaLCD(int cnt)
+  Mostrar mostrar;
+  void vistaLCD(int cnt = 1)
   {
+    switch (cnt)
+    {
+    case 0:
+      mostrar.PorLcd(*Actual());
+      break;
+
+      case 1:
+      mostrar.verNTemp();
+      break;
+    }
   }
 };
 
-Temporizador temp1(0, 0, 20),
-    temp2(0, 1, 3);
-Contador cambiarCnt, menuCnt;
-Temporizador listTemporizadores[] = {temp1, temp2};
+Vista vista;
 
 const int intPin = 2;
 const int btnIniciar = 13;
 const int btnMenuOk = 12;
 const int btnIncrementar = 11;
 const int btnDecrementar = 10;
-
-Mostrar mostrar;
 
 void setup()
 {
@@ -202,8 +225,7 @@ void setup()
   pinMode(btnIncrementar, INPUT);
   pinMode(btnDecrementar, INPUT);
 
-  mostrar.PorSerial(*Actual());
-  mostrar.PorLcd(*Actual());
+  vista.vistaLCD();
   attachInterrupt(digitalPinToInterrupt(intPin), blink, CHANGE);
 }
 
@@ -220,14 +242,12 @@ void loop()
   {
     delay(300);
     cambiarCnt.incrementar();
-    mostrar.PorSerial(*Actual());
   }
 
   if (digitalRead(btnDecrementar) == HIGH)
   {
     delay(300);
     cambiarCnt.decrementar();
-    mostrar.PorSerial(*Actual());
   }
 
   if (digitalRead(btnMenuOk) == HIGH)
@@ -235,15 +255,10 @@ void loop()
   }
 }
 
-Temporizador *Actual()
-{
-  return &listTemporizadores[cambiarCnt.getContador()];
-}
-
 void blink()
 {
   // mostrar.PorSerial(Actual());
-  mostrar.PorLcd(*Actual());
+  vista.vistaLCD();
   for (int list = 0; list < 2; list++)
   {
     listTemporizadores[list].decrementar();
