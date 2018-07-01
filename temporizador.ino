@@ -2,35 +2,37 @@
 #include "contador.h"
 #include "temporizador.h"
 
-LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
-
 class Mostrar
 {
 private:
   int decenas, unidades;
+  LiquidCrystal *lcd;
 
   void ver(int tiempo)
   {
     decenas = tiempo / 10;
     unidades = tiempo % 10;
-    lcd.print(decenas);
-    lcd.print(unidades);
+    lcd->print(decenas);
+    lcd->print(unidades);
   }
 
 public:
+  Mostrar(LiquidCrystal *mylcd) {
+    lcd = mylcd;
+  }
   void PorLcd(Temporizador t)
   {
     // fila 0 "Temporizador 1"
-    lcd.setCursor(0, 0);
-    lcd.print("Temporizador ");
-    lcd.print(t.getInstancia());
+    lcd->setCursor(0, 0);
+    lcd->print("Temporizador ");
+    lcd->print(t.getInstancia());
 
     // fila 1 "00:00:12"
-    lcd.setCursor(0, 1);
+    lcd->setCursor(0, 1);
     ver(t.reloj.Horas);
-    lcd.print(":");
+    lcd->print(":");
     ver(t.reloj.Minutos);
-    lcd.print(":");
+    lcd->print(":");
     ver(t.reloj.Segundos);
   }
 
@@ -51,6 +53,7 @@ public:
   }
 };
 
+LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
 Contador cambiarCnt;
 Temporizador listTemporizadores[] = {temp1, temp2};
@@ -60,7 +63,7 @@ const int btnIniciar = 13;
 const int btnMenuOk = 12;
 const int btnChange = 11;
 
-Mostrar mostrar;
+Mostrar mostrar(&lcd);
 
 void setup()
 {
