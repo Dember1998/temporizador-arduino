@@ -5,7 +5,7 @@
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 Temporizador temp1(0, 0, 20), temp2(0, 1, 3);
-Contador cambiarCnt;
+Contador cambiarCnt, programa;
 Temporizador listTemporizadores[] = {temp1, temp2};
 
 const int intPin = 2;
@@ -21,6 +21,7 @@ void setup()
   listTemporizadores[0].setInstancia(1);
   listTemporizadores[1].setInstancia(2);
   cambiarCnt.setLimite(1);
+  programa.setLimite(1);
   // put your setup code here, to run once:
   Serial.begin(9600);
 
@@ -36,7 +37,15 @@ void setup()
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
+  if (programa.getContador() == 0)
+  {
+    listTimer();
+  }
+}
+
+void listTimer()
+{
+  mostrar.PorLcd(*Actual());
   if (digitalRead(btnIniciar) == HIGH)
   {
     delay(300);
@@ -50,8 +59,8 @@ void loop()
     mostrar.PorSerial(*Actual());
   }
 
-  if(digitalRead(btnMenuOk) == HIGH) {
-
+  if (digitalRead(btnMenuOk) == HIGH)
+  {
   }
 }
 
@@ -63,7 +72,6 @@ Temporizador *Actual()
 void blink()
 {
   // mostrar.PorSerial(Actual());
-  mostrar.PorLcd(*Actual());
   for (int list = 0; list < 2; list++)
   {
     listTemporizadores[list].decrementar();
