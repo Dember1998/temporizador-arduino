@@ -14,7 +14,7 @@ void Contador::operator++(int)
 
 void Contador::operator--(int)
 {
-    if (cnt > Limite)
+    if (cnt >= Limite)
     {
         cnt--;
     }

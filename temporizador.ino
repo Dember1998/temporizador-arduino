@@ -11,7 +11,8 @@ Temporizador listTemporizadores[] = {temp1, temp2};
 const int intPin = 2;
 const int btnIniciar = 13;
 const int btnMenuOk = 12;
-const int btnChange = 11;
+const int btnIncremento = 11;
+const int btnDecremento = 10;
 
 Mostrar mostrar(&lcd);
 
@@ -28,7 +29,8 @@ void setup()
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
   pinMode(btnMenuOk, INPUT);
-  pinMode(btnChange, INPUT);
+  pinMode(btnIncremento, INPUT);
+  pinMode(btnDecremento, INPUT);
 
   mostrar.PorSerial(*Actual());
   mostrar.PorLcd(*Actual());
@@ -52,10 +54,17 @@ void listTimer()
     Actual()->IniciarDetener();
   }
 
-  if (digitalRead(btnChange) == HIGH)
+  if (digitalRead(btnIncremento) == HIGH)
   {
     delay(300);
     cambiarCnt++;
+    mostrar.PorSerial(*Actual());
+  }
+
+  if (digitalRead(btnDecremento) == HIGH)
+  {
+    delay(300);
+    cambiarCnt--;
     mostrar.PorSerial(*Actual());
   }
 
