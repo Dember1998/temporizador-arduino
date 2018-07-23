@@ -7,10 +7,8 @@ class Contador
     int Limite = 0;
 
   public:
-    void incrementar();
-
-    void decrementar();
-
+    void operator ++ (int);
+    void operator --(int);
     int getContador();
 
     void setLimite(int limite = 0);

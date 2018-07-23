@@ -1,6 +1,6 @@
 #include "contador.h"
 
-void Contador::incrementar()
+void Contador::operator++(int)
 {
     if (cnt < Limite)
     {
@@ -12,7 +12,7 @@ void Contador::incrementar()
     }
 }
 
-void Contador::decrementar()
+void Contador::operator--(int)
 {
     if (cnt > Limite)
     {

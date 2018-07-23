@@ -55,7 +55,7 @@ void listTimer()
   if (digitalRead(btnChange) == HIGH)
   {
     delay(300);
-    cambiarCnt.incrementar();
+    cambiarCnt++;
     mostrar.PorSerial(*Actual());
   }
 
