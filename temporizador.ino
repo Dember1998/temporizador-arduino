@@ -52,19 +52,7 @@ void listTimerConfig()
   lcd.print("temporizador ");
   lcd.print(Actual()->getInstancia());
 
-  if (digitalRead(btnIncremento) == HIGH)
-  {
-    delay(300);
-    cambiarCnt++;
-    mostrar.PorSerial(*Actual());
-  }
-
-  if (digitalRead(btnDecremento) == HIGH)
-  {
-    delay(300);
-    cambiarCnt--;
-    mostrar.PorSerial(*Actual());
-  }
+  changeTemp();
 }
 
 void setPinMode()
@@ -76,14 +64,8 @@ void setPinMode()
   pinMode(btnDecremento, INPUT);
 }
 
-void listTimer()
+void changeTemp()
 {
-  mostrar.PorLcd(*Actual());
-  if (digitalRead(btnIniciar) == HIGH)
-  {
-    delay(300);
-    Actual()->IniciarDetener();
-  }
 
   if (digitalRead(btnIncremento) == HIGH)
   {
@@ -98,6 +80,18 @@ void listTimer()
     cambiarCnt--;
     mostrar.PorSerial(*Actual());
   }
+}
+
+void listTimer()
+{
+  mostrar.PorLcd(*Actual());
+  if (digitalRead(btnIniciar) == HIGH)
+  {
+    delay(300);
+    Actual()->IniciarDetener();
+  }
+
+  changeTemp();
 
   if (digitalRead(btnMenuOk) == HIGH)
   {
