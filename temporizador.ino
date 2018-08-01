@@ -21,7 +21,7 @@ void setup()
   lcd.begin(16, 2);
 
   cambiarCnt.setLimite(3);
-  programa.setLimite(1);
+  programa.setLimite(2);
   // put your setup code here, to run once:
   Serial.begin(9600);
 
@@ -37,6 +37,33 @@ void loop()
   if (programa.getContador() == 0)
   {
     listTimer();
+  }
+  else if (programa.getContador() == 1)
+  {
+    listTimerConfig();
+  }
+}
+
+void listTimerConfig()
+{
+  lcd.setCursor(1, 0);
+  lcd.print("configurar");
+  lcd.setCursor(1, 1);
+  lcd.print("temporizador ");
+  lcd.print(Actual()->getInstancia());
+
+  if (digitalRead(btnIncremento) == HIGH)
+  {
+    delay(300);
+    cambiarCnt++;
+    mostrar.PorSerial(*Actual());
+  }
+
+  if (digitalRead(btnDecremento) == HIGH)
+  {
+    delay(300);
+    cambiarCnt--;
+    mostrar.PorSerial(*Actual());
   }
 }
 
@@ -74,6 +101,9 @@ void listTimer()
 
   if (digitalRead(btnMenuOk) == HIGH)
   {
+    delay(300);
+    lcd.clear();
+    programa++;
   }
 }
 
