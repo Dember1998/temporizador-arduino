@@ -6,7 +6,10 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
     Minutos = minutos;
     Horas = horas;
     Restaurar();
+    instancias = NInstancia++;
 }
+
+int Temporizador::NInstancia = 1;
 
 void Temporizador::Restaurar()
 {
@@ -19,7 +22,6 @@ void Temporizador::setSegundos(int s = 0) { Segundos = s; }
 void Temporizador::setMinutos(int m = 0) { Minutos = m; }
 void Temporizador::setHoras(int h = 0) { Horas = h; }
 
-void Temporizador::setInstancia(int i) { instancias = i; }
 int Temporizador::getInstancia() { return instancias; }
 void Temporizador::IniciarDetener()
 {

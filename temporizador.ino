@@ -19,10 +19,6 @@ Mostrar mostrar(&lcd);
 void setup()
 {
   lcd.begin(16, 2);
-  listTemporizadores[0].setInstancia(1);
-  listTemporizadores[1].setInstancia(2);
-  listTemporizadores[2].setInstancia(3);
-  listTemporizadores[3].setInstancia(4);
 
   cambiarCnt.setLimite(3);
   programa.setLimite(1);

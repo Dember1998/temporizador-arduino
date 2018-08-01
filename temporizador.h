@@ -8,6 +8,7 @@ class Temporizador : private Reloj
 private:
   int instancias;
   bool activar;
+  static int NInstancia;
 
 public:
   Temporizador(int horas, int minutos, int segundos);
