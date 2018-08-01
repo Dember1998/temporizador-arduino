@@ -80,7 +80,7 @@ Temporizador *Actual()
 void blink()
 {
   // mostrar.PorSerial(Actual());
-  for (int list = 0; list < 2; list++)
+  for (int list = 0; list < 4; list++)
   {
     listTemporizadores[list].decrementar();
   }
