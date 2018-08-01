@@ -25,11 +25,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(9600);
 
-  pinMode(intPin, INPUT_PULLUP);
-  pinMode(btnIniciar, INPUT);
-  pinMode(btnMenuOk, INPUT);
-  pinMode(btnIncremento, INPUT);
-  pinMode(btnDecremento, INPUT);
+  setPinMode();
 
   mostrar.PorSerial(*Actual());
   mostrar.PorLcd(*Actual());
@@ -42,6 +38,15 @@ void loop()
   {
     listTimer();
   }
+}
+
+void setPinMode()
+{
+  pinMode(intPin, INPUT_PULLUP);
+  pinMode(btnIniciar, INPUT);
+  pinMode(btnMenuOk, INPUT);
+  pinMode(btnIncremento, INPUT);
+  pinMode(btnDecremento, INPUT);
 }
 
 void listTimer()
