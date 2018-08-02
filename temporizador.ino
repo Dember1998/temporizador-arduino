@@ -34,13 +34,15 @@ void setup()
 
 void loop()
 {
-  if (programa.getContador() == 0)
+  switch (programa.getContador())
   {
+  case 0:
     listTimer();
-  }
-  else if (programa.getContador() == 1)
-  {
+    break;
+
+  case 1:
     listTimerConfig();
+    break;
   }
 }
 
