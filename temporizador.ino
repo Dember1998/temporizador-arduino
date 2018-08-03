@@ -67,6 +67,11 @@ void listTimerConfig()
 
   changeTemp();
 
+  btnIncProgram();
+}
+
+void btnIncProgram()
+{
   if (digitalRead(btnMenuOk) == HIGH)
   {
     delay_btn();
@@ -118,12 +123,7 @@ void listTimer()
 
   changeTemp();
 
-  if (digitalRead(btnMenuOk) == HIGH)
-  {
-    delay_btn();
-    lcd.clear();
-    programa++;
-  }
+  btnIncProgram();
 }
 
 Temporizador *Actual()
