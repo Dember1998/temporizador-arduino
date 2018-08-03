@@ -95,6 +95,20 @@ public:
       _myCnt = 0;
     }
   }
+
+  void Minutes()
+  {
+    _mostrar->PorLcd(*Actual());
+    _myCnt++;
+
+    if (_myCnt == 2)
+      _mostrar->ShowMinutes();
+    else if (_myCnt == 3)
+    {
+      _mostrar->HiddenMinutes();
+      _myCnt = 0;
+    }
+  }
 };
 
 Contador blinkCnt(4);
@@ -104,7 +118,7 @@ void EditTemp()
 {
   if (editTemp)
   {
-    myblink.Seconds();
+    myblink.Minutes();
   }
 }
 
