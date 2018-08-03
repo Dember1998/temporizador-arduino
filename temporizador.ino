@@ -52,9 +52,7 @@ void loop()
 
 void setTimer()
 {
-  lcd.setCursor(1, 0);
-  lcd.print("temporizador ");
-  lcd.print(Actual()->getInstancia());
+  mostrar.PorLcd(*Actual());
 }
 
 void listTimerConfig()
