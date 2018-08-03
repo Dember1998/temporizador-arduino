@@ -65,10 +65,10 @@ void listTimerConfig()
 
   changeTemp();
 
-  btnIncProgram();
+  btnOk();
 }
 
-void btnIncProgram()
+void btnOk()
 {
   if (digitalRead(btnMenuOk) == HIGH)
   {
@@ -121,7 +121,7 @@ void listTimer()
 
   changeTemp();
 
-  btnIncProgram();
+  btnOk();
 }
 
 Temporizador *Actual()
