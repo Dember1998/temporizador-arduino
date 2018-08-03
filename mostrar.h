@@ -7,6 +7,7 @@ class Mostrar
   private:
     int decenas, unidades;
     LiquidCrystal *lcd;
+    bool _showSeconds = true;
 
     void ver(int tiempo);
 
@@ -14,6 +15,8 @@ class Mostrar
     Mostrar(LiquidCrystal *mylcd);
 
     void PorLcd(Temporizador t);
+    void HiddenSeconds();
+    void ShowSeconds();
 
     void PorSerial(Temporizador r);
 };

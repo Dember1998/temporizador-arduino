@@ -13,6 +13,8 @@ const int btnIniciar = 13;
 const int btnMenuOk = 12;
 const int btnIncremento = 11;
 const int btnDecremento = 10;
+bool editTemp = false;
+bool activar = true;
 
 Mostrar mostrar(&lcd);
 
@@ -52,7 +54,7 @@ void loop()
 
 void setTimer()
 {
-  mostrar.PorLcd(*Actual());
+  editTemp = true;
 }
 
 void listTimerConfig()
@@ -66,6 +68,30 @@ void listTimerConfig()
   changeTemp();
 
   btnOk();
+}
+
+int mycnt = 0;
+void EditTemp()
+{
+  mycnt++;
+  if (mycnt == 2)
+    activar = false;
+  else if (mycnt == 3)
+  {
+    activar = true;
+    mycnt = 0;
+  }
+
+  if (editTemp)
+  {
+    mostrar.PorLcd(*Actual());
+    if (activar)
+    {
+      mostrar.ShowSeconds();
+    }
+    else
+      mostrar.HiddenSeconds();
+  }
 }
 
 void btnOk()
@@ -136,4 +162,6 @@ void blink()
   {
     listTemporizadores[list].decrementar();
   }
+
+  EditTemp();
 }
