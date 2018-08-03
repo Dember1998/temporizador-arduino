@@ -31,7 +31,7 @@ void setup()
 
   mostrar.PorSerial(*Actual());
   mostrar.PorLcd(*Actual());
-  attachInterrupt(digitalPinToInterrupt(intPin), blink, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(intPin), interruption, CHANGE);
 }
 
 void loop()
@@ -174,7 +174,7 @@ Temporizador *Actual()
   return &listTemporizadores[cambiarCnt.getContador()];
 }
 
-void blink()
+void interruption()
 {
   // mostrar.PorSerial(Actual());
   for (int list = 0; list < 4; list++)
