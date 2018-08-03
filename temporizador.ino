@@ -66,19 +66,23 @@ void setPinMode()
   pinMode(btnDecremento, INPUT);
 }
 
+void delay_btn() {
+   delay(300);
+}
+
 void changeTemp()
 {
 
   if (digitalRead(btnIncremento) == HIGH)
   {
-    delay(300);
+    delay_btn();
     cambiarCnt++;
     mostrar.PorSerial(*Actual());
   }
 
   if (digitalRead(btnDecremento) == HIGH)
   {
-    delay(300);
+    delay_btn();
     cambiarCnt--;
     mostrar.PorSerial(*Actual());
   }
@@ -89,7 +93,7 @@ void listTimer()
   mostrar.PorLcd(*Actual());
   if (digitalRead(btnIniciar) == HIGH)
   {
-    delay(300);
+    delay_btn();
     Actual()->IniciarDetener();
   }
 
@@ -97,7 +101,7 @@ void listTimer()
 
   if (digitalRead(btnMenuOk) == HIGH)
   {
-    delay(300);
+    delay_btn();
     lcd.clear();
     programa++;
   }
