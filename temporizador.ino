@@ -74,7 +74,6 @@ class Blink
 {
 private:
   Mostrar *_mostrar;
-  bool _activar = true;
   int _myCnt = 0;
 
 public:
@@ -85,20 +84,16 @@ public:
 
   void Seconds()
   {
+    _mostrar->PorLcd(*Actual());
     _myCnt++;
+
     if (_myCnt == 2)
-      _activar = false;
+      _mostrar->ShowSeconds();
     else if (_myCnt == 3)
     {
-      _activar = true;
+      _mostrar->HiddenSeconds();
       _myCnt = 0;
     }
-
-    _mostrar->PorLcd(*Actual());
-    if (_activar)
-      _mostrar->ShowSeconds();
-    else
-      _mostrar->HiddenSeconds();
   }
 };
 
