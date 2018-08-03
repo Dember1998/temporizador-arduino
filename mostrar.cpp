@@ -22,7 +22,11 @@ void Mostrar::PorLcd(Temporizador t)
 
     // fila 1 "00:00:12"
     lcd->setCursor(0, 1);
-    ver(t.reloj.Horas);
+    if (_showHour)
+        ver(t.reloj.Horas);
+    else
+        lcd->print("  ");
+
     lcd->print(":");
 
     if (_showMinutes)
@@ -56,6 +60,16 @@ void Mostrar::HiddenMinutes()
 void Mostrar::ShowMinutes()
 {
     _showMinutes = true;
+}
+
+void Mostrar::ShowHour()
+{
+    _showHour = true;
+}
+
+void Mostrar::HiddenHour()
+{
+    _showHour = false;
 }
 
 void Mostrar::PorSerial(Temporizador r)
