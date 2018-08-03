@@ -21,7 +21,7 @@ void setup()
   lcd.begin(16, 2);
 
   cambiarCnt.setLimite(3);
-  programa.setLimite(2);
+  programa.setLimite(3);
   // put your setup code here, to run once:
   Serial.begin(9600);
 
@@ -43,7 +43,18 @@ void loop()
   case 1:
     listTimerConfig();
     break;
+
+  case 2:
+    setTimer();
+    break;
   }
+}
+
+void setTimer()
+{
+  lcd.setCursor(1, 0);
+  lcd.print("temporizador ");
+  lcd.print(Actual()->getInstancia());
 }
 
 void listTimerConfig()
@@ -55,6 +66,13 @@ void listTimerConfig()
   lcd.print(Actual()->getInstancia());
 
   changeTemp();
+
+  if (digitalRead(btnMenuOk) == HIGH)
+  {
+    delay_btn();
+    lcd.clear();
+    programa++;
+  }
 }
 
 void setPinMode()
@@ -66,8 +84,9 @@ void setPinMode()
   pinMode(btnDecremento, INPUT);
 }
 
-void delay_btn() {
-   delay(300);
+void delay_btn()
+{
+  delay(300);
 }
 
 void changeTemp()
