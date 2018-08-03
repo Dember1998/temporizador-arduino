@@ -70,27 +70,46 @@ void listTimerConfig()
   btnOk();
 }
 
-int mycnt = 0;
-void EditTemp()
+class Blink
 {
-  mycnt++;
-  if (mycnt == 2)
-    activar = false;
-  else if (mycnt == 3)
+private:
+  Mostrar *_mostrar;
+  bool _activar = true;
+  int _myCnt = 0;
+
+public:
+  Blink(Mostrar *mostrar)
   {
-    activar = true;
-    mycnt = 0;
+    _mostrar = mostrar;
   }
 
+  void Seconds()
+  {
+    _myCnt++;
+    if (_myCnt == 2)
+      _activar = false;
+    else if (_myCnt == 3)
+    {
+      _activar = true;
+      _myCnt = 0;
+    }
+
+    _mostrar->PorLcd(*Actual());
+    if (_activar)
+      _mostrar->ShowSeconds();
+    else
+      _mostrar->HiddenSeconds();
+  }
+};
+
+Contador blinkCnt(4);
+Blink myblink(&mostrar);
+
+void EditTemp()
+{
   if (editTemp)
   {
-    mostrar.PorLcd(*Actual());
-    if (activar)
-    {
-      mostrar.ShowSeconds();
-    }
-    else
-      mostrar.HiddenSeconds();
+    myblink.Seconds();
   }
 }
 

@@ -2,14 +2,16 @@
 
 class Contador
 {
-  private:
-    int cnt = 0;
-    int Limite = 0;
+private:
+  int cnt = 0;
+  int Limite = 0;
 
-  public:
-    void operator ++ (int);
-    void operator --(int);
-    int getContador();
+public:
+  Contador();
+  Contador(int);
+  void operator++(int);
+  void operator--(int);
+  int getContador();
 
-    void setLimite(int limite = 0);
+  void setLimite(int limite = 0);
 };

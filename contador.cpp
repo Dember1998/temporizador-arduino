@@ -1,5 +1,11 @@
 #include "contador.h"
 
+Contador::Contador() {}
+
+Contador::Contador(int limite) {
+    Limite = Limite;
+}
+
 void Contador::operator++(int)
 {
     if (cnt < Limite)
