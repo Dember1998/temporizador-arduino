@@ -18,20 +18,18 @@ Contador
     programa(3),
     blinkCnt(2);
 
+Btn btnIniciar(13),
+    btnMenuOk(12),
+    btnIncremento(11),
+    btnDecremento(10);
+
 Mostrar mostrar(&lcd);
 
-const int
-    intPin = 2,
-    btnIniciar = 13;
+const int intPin = 2;
 
 bool
     editTemp = false,
     activar = true;
-
-
-Btn btnMenuOk(12),
-    btnIncremento(11),
-    btnDecremento(10);
 
 void setup()
 {
@@ -120,7 +118,6 @@ void btnOk()
 void setPinMode()
 {
   pinMode(intPin, INPUT_PULLUP);
-  pinMode(btnIniciar, INPUT);
 }
 
 void delay_btn()
@@ -148,7 +145,7 @@ void changeTemp()
 void listTimer()
 {
   mostrar.PorLcd(Actual());
-  if (digitalRead(btnIniciar) == HIGH)
+  if (btnIniciar.click())
   {
     delay_btn();
     Actual()->IniciarDetener();
