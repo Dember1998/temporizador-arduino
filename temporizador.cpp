@@ -49,9 +49,19 @@ void Temporizador::decrementar()
 
 void Temporizador::Restaurar()
 {
-    reloj.Segundos = Segundos;
-    reloj.Minutos = Minutos;
-    reloj.Horas = Horas;
+    Reloj relojTemporal;
+    EEPROM.get(instancias, relojTemporal);
+
+    if (relojTemporal.Segundos > 0 && relojTemporal.Minutos > 0 && relojTemporal.Horas > 0)
+    {
+        reloj = relojTemporal;
+    }
+    else
+    {
+        reloj.Segundos = Segundos;
+        reloj.Minutos = Minutos;
+        reloj.Horas = Horas;
+    }
 }
 
 void Temporizador::save()
