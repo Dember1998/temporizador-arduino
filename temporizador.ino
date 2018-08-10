@@ -30,7 +30,7 @@ void setup()
   setPinMode();
 
   mostrar.PorSerial(*Actual());
-  mostrar.PorLcd(*Actual());
+  mostrar.PorLcd(Actual());
   attachInterrupt(digitalPinToInterrupt(intPin), interruption, CHANGE);
 }
 
@@ -92,7 +92,7 @@ public:
     _mostrar->ShowHour();
     _mostrar->ShowMinutes();
 
-    _mostrar->PorLcd(*Actual());
+    _mostrar->PorLcd(Actual());
     _myCnt++;
 
     if (_myCnt == 2)
@@ -109,7 +109,7 @@ public:
     _mostrar->ShowSeconds();
     _mostrar->ShowHour();
 
-    _mostrar->PorLcd(*Actual());
+    _mostrar->PorLcd(Actual());
     _myCnt++;
 
     if (_myCnt == 2)
@@ -127,7 +127,7 @@ public:
     _mostrar->ShowSeconds();
     _mostrar->ShowMinutes();
 
-    _mostrar->PorLcd(*Actual());
+    _mostrar->PorLcd(Actual());
     _myCnt++;
 
     if (_myCnt == 2)
@@ -205,7 +205,7 @@ void changeTemp()
 
 void listTimer()
 {
-  mostrar.PorLcd(*Actual());
+  mostrar.PorLcd(Actual());
   if (digitalRead(btnIniciar) == HIGH)
   {
     delay_btn();

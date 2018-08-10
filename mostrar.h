@@ -16,7 +16,7 @@ private:
 public:
   Mostrar(LiquidCrystal *mylcd);
 
-  void PorLcd(Temporizador t);
+  void PorLcd(Temporizador *t);
 
   void HiddenSeconds();
   void ShowSeconds();
