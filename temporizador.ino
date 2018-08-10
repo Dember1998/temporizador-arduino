@@ -13,8 +13,8 @@ Temporizador
     listTemporizadores[] = {temp1, temp2, temp3, temp4};
 
 Contador
-    cambiarCnt,
-    programa,
+    cambiarCnt(3),
+    programa(3),
     blinkCnt(2);
 
 Mostrar mostrar(&lcd);
@@ -33,10 +33,6 @@ bool
 void setup()
 {
   lcd.begin(16, 2);
-
-  cambiarCnt.setLimite(3);
-  programa.setLimite(3);
-  // put your setup code here, to run once:
   Serial.begin(9600);
 
   setPinMode();
