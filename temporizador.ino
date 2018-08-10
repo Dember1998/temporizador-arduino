@@ -19,13 +19,16 @@ Contador
 
 Mostrar mostrar(&lcd);
 
-const int intPin = 2;
-const int btnIniciar = 13;
-const int btnMenuOk = 12;
-const int btnIncremento = 11;
-const int btnDecremento = 10;
-bool editTemp = false;
-bool activar = true;
+const int
+    intPin = 2,
+    btnIniciar = 13,
+    btnMenuOk = 12,
+    btnIncremento = 11,
+    btnDecremento = 10;
+
+bool
+    editTemp = false,
+    activar = true;
 
 void setup()
 {
