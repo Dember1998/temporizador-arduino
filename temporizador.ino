@@ -23,12 +23,50 @@ const int
     intPin = 2,
     btnIniciar = 13,
     btnMenuOk = 12,
-    btnIncremento = 11,
     btnDecremento = 10;
 
 bool
     editTemp = false,
     activar = true;
+
+class Btn
+{
+private:
+  int Pin;
+  bool oldstate;
+
+  void delay_btn()
+  {
+    delay(50);
+  }
+
+public:
+  Btn(int pin, String mode = "input")
+  {
+    Pin = pin;
+    pinMode(pin, INPUT);
+  }
+
+  bool click()
+  {
+    if (digitalRead(Pin) == HIGH)
+    {
+      this->delay_btn();
+      oldstate = true;
+    }
+
+    if (oldstate && digitalRead(Pin) == LOW)
+    {
+      this->delay_btn();
+      oldstate = false;
+      return true;
+    }
+
+    return false;
+  }
+};
+
+Btn btnIncremento(11);
 
 void setup()
 {
@@ -119,7 +157,6 @@ void setPinMode()
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
   pinMode(btnMenuOk, INPUT);
-  pinMode(btnIncremento, INPUT);
   pinMode(btnDecremento, INPUT);
 }
 
@@ -131,9 +168,8 @@ void delay_btn()
 void changeTemp()
 {
 
-  if (digitalRead(btnIncremento) == HIGH)
+  if (btnIncremento.click())
   {
-    delay_btn();
     cambiarCnt++;
     mostrar.PorSerial(Actual());
   }
