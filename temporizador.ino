@@ -35,8 +35,7 @@ void setup()
 {
   lcd.begin(16, 2);
   Serial.begin(9600);
-
-  setPinMode();
+  pinMode(intPin, INPUT_PULLUP);
 
   mostrar.PorSerial(Actual());
   mostrar.PorLcd(Actual());
@@ -113,11 +112,6 @@ void btnOk()
     lcd.clear();
     programa++;
   }
-}
-
-void setPinMode()
-{
-  pinMode(intPin, INPUT_PULLUP);
 }
 
 void delay_btn()
