@@ -56,4 +56,5 @@ void Temporizador::Restaurar()
 
 void Temporizador::save()
 {
+    EEPROM.put(instancias, reloj);
 }
