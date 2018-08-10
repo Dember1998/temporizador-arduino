@@ -2,6 +2,7 @@
 #define temporizador_h
 #include <Arduino.h>
 #include "reloj.h"
+#include <EEPROM.h>
 
 class Temporizador : private Reloj
 {
@@ -16,7 +17,7 @@ public:
   Reloj reloj;
 
   void Restaurar();
-
+  void save();
 
   void setInstancia(int i);
   int getInstancia();

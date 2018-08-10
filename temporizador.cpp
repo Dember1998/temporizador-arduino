@@ -11,14 +11,6 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
 
 int Temporizador::NInstancia = 1;
 
-void Temporizador::Restaurar()
-{
-    reloj.Segundos = Segundos;
-    reloj.Minutos = Minutos;
-    reloj.Horas = Horas;
-}
-
-
 int Temporizador::getInstancia() { return instancias; }
 void Temporizador::IniciarDetener()
 {
@@ -53,4 +45,15 @@ void Temporizador::decrementar()
     }
     if (reloj.Horas < 0)
         reloj.Horas = 0;
+}
+
+void Temporizador::Restaurar()
+{
+    reloj.Segundos = Segundos;
+    reloj.Minutos = Minutos;
+    reloj.Horas = Horas;
+}
+
+void Temporizador::save()
+{
 }
