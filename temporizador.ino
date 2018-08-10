@@ -4,9 +4,20 @@
 #include "mostrar.h"
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
-Temporizador temp1(0, 0, 20), temp2(0, 1, 3), temp3(0, 1, 2), temp4(0, 1, 0);
-Contador cambiarCnt, programa, blinkCnt(2);
-Temporizador listTemporizadores[] = {temp1, temp2, temp3, temp4};
+
+Temporizador
+    temp1(0, 0, 20),
+    temp2(0, 1, 3),
+    temp3(0, 1, 2),
+    temp4(0, 1, 0),
+    listTemporizadores[] = {temp1, temp2, temp3, temp4};
+
+Contador
+    cambiarCnt,
+    programa,
+    blinkCnt(2);
+
+Mostrar mostrar(&lcd);
 
 const int intPin = 2;
 const int btnIniciar = 13;
@@ -15,8 +26,6 @@ const int btnIncremento = 11;
 const int btnDecremento = 10;
 bool editTemp = false;
 bool activar = true;
-
-Mostrar mostrar(&lcd);
 
 void setup()
 {
@@ -74,7 +83,6 @@ void listTimerConfig()
 
   btnOk();
 }
-
 
 Blink myblink(&mostrar, Actual());
 
