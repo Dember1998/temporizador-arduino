@@ -1,3 +1,6 @@
+#ifndef btn_h
+#define btn_h
+
 #include <Arduino.h>
 
 class Btn
@@ -36,3 +39,5 @@ public:
     return false;
   }
 };
+
+#endif

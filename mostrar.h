@@ -1,3 +1,5 @@
+#ifndef mostrar_h
+#define mostrar_h
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include "temporizador.h"
@@ -44,3 +46,4 @@ public:
   void Minutes();
   void Hour();
 };
+#endif

@@ -5,6 +5,7 @@
 #include "temporizador.h"
 #include "mostrar.h"
 #include "btn.h"
+#include "EditarTemporizador.h"
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 
@@ -86,48 +87,11 @@ void listTimerConfig()
 }
 
 Blink myblink(&mostrar, Actual());
-
-void editarSegundos()
-{
-  myblink.Seconds();
-
-  if (btnIncremento.click())
-  {
-    Actual()->IncSegundos();
-  }
-
-  if (btnDecremento.click())
-  {
-    Actual()->DecSegundos();
-  }
-}
-
-void editarMinutos()
-{
-  if (btnIncremento.click())
-  {
-    Actual()->IncMinutos();
-  }
-
-  if (btnDecremento.click())
-  {
-    Actual()->DecMinutos();
-  }
-}
-
-void editarHoras()
-{
-    myblink.Hour();
-  if (btnIncremento.click())
-  {
-    Actual()->IncHoras();
-  }
-
-  if (btnDecremento.click())
-  {
-    Actual()->DecHoras();
-  }
-}
+EditarTemporizador editarTemp(
+    &myblink,
+    Actual(),
+    &btnIncremento,
+    &btnDecremento);
 
 void EditTemp()
 {
@@ -136,13 +100,13 @@ void EditTemp()
     switch (blinkCnt.getContador())
     {
     case 0:
-      editarSegundos();
+      editarTemp.editarSegundos();
       break;
     case 1:
-      editarMinutos();
+      editarTemp.editarMinutos();
       break;
     case 2:
-      editarHoras();
+      editarTemp.editarHoras();
       break;
     }
   }
