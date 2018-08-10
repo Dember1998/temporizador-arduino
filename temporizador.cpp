@@ -56,6 +56,15 @@ void Temporizador::IncSegundos()
     }
 }
 
+void Temporizador::DecSegundos()
+{
+    reloj.Segundos--;
+    if (reloj.Segundos < 0)
+    {
+        reloj.Segundos = 59;
+    }
+}
+
 void Temporizador::IncMinutos()
 {
     reloj.Minutos++;

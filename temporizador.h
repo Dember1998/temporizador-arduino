@@ -26,6 +26,8 @@ public:
   void decrementar();
 
   void IncSegundos();
+  void DecSegundos();
+  
   void IncMinutos();
 };
 #endif
