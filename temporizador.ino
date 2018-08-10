@@ -21,8 +21,7 @@ Mostrar mostrar(&lcd);
 
 const int
     intPin = 2,
-    btnIniciar = 13,
-    btnMenuOk = 12;
+    btnIniciar = 13;
 
 bool
     editTemp = false,
@@ -65,7 +64,8 @@ public:
   }
 };
 
-Btn btnIncremento(11),
+Btn btnMenuOk(12),
+    btnIncremento(11),
     btnDecremento(10);
 
 void setup()
@@ -101,7 +101,7 @@ void loop()
 void setTimer()
 {
   editTemp = true;
-  if (digitalRead(btnMenuOk) == HIGH)
+  if (btnMenuOk.click())
   {
     delay_btn();
     blinkCnt++;
@@ -144,7 +144,7 @@ void EditTemp()
 
 void btnOk()
 {
-  if (digitalRead(btnMenuOk) == HIGH)
+  if (btnMenuOk.click())
   {
     delay_btn();
     lcd.clear();
@@ -156,7 +156,6 @@ void setPinMode()
 {
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
-  pinMode(btnMenuOk, INPUT);
 }
 
 void delay_btn()
