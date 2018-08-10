@@ -22,8 +22,7 @@ Mostrar mostrar(&lcd);
 const int
     intPin = 2,
     btnIniciar = 13,
-    btnMenuOk = 12,
-    btnDecremento = 10;
+    btnMenuOk = 12;
 
 bool
     editTemp = false,
@@ -66,7 +65,8 @@ public:
   }
 };
 
-Btn btnIncremento(11);
+Btn btnIncremento(11),
+    btnDecremento(10);
 
 void setup()
 {
@@ -157,7 +157,6 @@ void setPinMode()
   pinMode(intPin, INPUT_PULLUP);
   pinMode(btnIniciar, INPUT);
   pinMode(btnMenuOk, INPUT);
-  pinMode(btnDecremento, INPUT);
 }
 
 void delay_btn()
@@ -174,7 +173,7 @@ void changeTemp()
     mostrar.PorSerial(Actual());
   }
 
-  if (digitalRead(btnDecremento) == HIGH)
+  if (btnDecremento.click())
   {
     delay_btn();
     cambiarCnt--;
