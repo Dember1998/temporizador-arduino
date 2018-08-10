@@ -1,3 +1,5 @@
+#include <EEPROM.h>
+
 #include <LiquidCrystal.h>
 #include "contador.h"
 #include "temporizador.h"
