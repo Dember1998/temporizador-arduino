@@ -47,11 +47,21 @@ void Temporizador::decrementar()
         reloj.Horas = 0;
 }
 
-void Temporizador::IncSegundos() {
+void Temporizador::IncSegundos()
+{
     reloj.Segundos++;
     if (reloj.Segundos > 59)
     {
         reloj.Segundos = 0;
+    }
+}
+
+void Temporizador::IncMinutos()
+{
+    reloj.Minutos++;
+    if (reloj.Minutos > 59)
+    {
+        reloj.Minutos = 0;
     }
 }
 
