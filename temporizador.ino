@@ -104,7 +104,6 @@ void editarSegundos()
 
 void editarMinutos()
 {
-  myblink.Minutes();
   if (btnIncremento.click())
   {
     Actual()->IncMinutos();
@@ -113,6 +112,20 @@ void editarMinutos()
   if (btnDecremento.click())
   {
     Actual()->DecMinutos();
+  }
+}
+
+void editarHoras()
+{
+    myblink.Hour();
+  if (btnIncremento.click())
+  {
+    Actual()->IncHoras();
+  }
+
+  if (btnDecremento.click())
+  {
+    Actual()->DecHoras();
   }
 }
 
@@ -129,7 +142,7 @@ void EditTemp()
       editarMinutos();
       break;
     case 2:
-      myblink.Hour();
+      editarHoras();
       break;
     }
   }

@@ -83,6 +83,20 @@ void Temporizador::DecMinutos()
     }
 }
 
+void Temporizador::IncHoras()
+{
+    reloj.Horas++;
+    if (reloj.Horas > 23)
+        reloj.Horas = 0;
+}
+
+void Temporizador::DecHoras()
+{
+    reloj.Horas--;
+    if (reloj.Horas < 0)
+        reloj.Horas = 23;
+}
+
 void Temporizador::Restaurar()
 {
     Reloj relojTemporal;

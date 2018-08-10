@@ -30,5 +30,8 @@ public:
 
   void IncMinutos();
   void DecMinutos();
+
+  void IncHoras();
+  void DecHoras();
 };
 #endif
