@@ -3,7 +3,7 @@
 Contador::Contador() {}
 
 Contador::Contador(int limite) {
-    Limite = Limite;
+    Limite = limite;
 }
 
 void Contador::operator++(int)

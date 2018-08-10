@@ -5,7 +5,7 @@
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 Temporizador temp1(0, 0, 20), temp2(0, 1, 3), temp3(0, 1, 2), temp4(0, 1, 0);
-Contador cambiarCnt, programa;
+Contador cambiarCnt, programa, blinkCnt(2);
 Temporizador listTemporizadores[] = {temp1, temp2, temp3, temp4};
 
 const int intPin = 2;
@@ -55,6 +55,11 @@ void loop()
 void setTimer()
 {
   editTemp = true;
+  if (digitalRead(btnMenuOk) == HIGH)
+  {
+    delay_btn();
+    blinkCnt++;
+  }
 }
 
 void listTimerConfig()
@@ -84,6 +89,9 @@ public:
 
   void Seconds()
   {
+    _mostrar->ShowHour();
+    _mostrar->ShowMinutes();
+
     _mostrar->PorLcd(*Actual());
     _myCnt++;
 
@@ -98,6 +106,9 @@ public:
 
   void Minutes()
   {
+    _mostrar->ShowSeconds();
+    _mostrar->ShowHour();
+
     _mostrar->PorLcd(*Actual());
     _myCnt++;
 
@@ -110,8 +121,12 @@ public:
     }
   }
 
-    void Hour()
+  void Hour()
   {
+
+    _mostrar->ShowSeconds();
+    _mostrar->ShowMinutes();
+
     _mostrar->PorLcd(*Actual());
     _myCnt++;
 
@@ -123,17 +138,26 @@ public:
       _myCnt = 0;
     }
   }
-
 };
 
-Contador blinkCnt(4);
 Blink myblink(&mostrar);
 
 void EditTemp()
 {
   if (editTemp)
   {
-    myblink.Hour();
+    switch (blinkCnt.getContador())
+    {
+    case 0:
+      myblink.Seconds();
+      break;
+    case 1:
+      myblink.Minutes();
+      break;
+    case 2:
+      myblink.Hour();
+      break;
+    }
   }
 }
 
