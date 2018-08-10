@@ -17,9 +17,6 @@ public:
 
   void Restaurar();
 
-  void setSegundos(int s = 0);
-  void setMinutos(int m = 0);
-  void setHoras(int h = 0);
 
   void setInstancia(int i);
   int getInstancia();
