@@ -87,3 +87,61 @@ void Mostrar::PorSerial(Temporizador *r)
     Serial.print(" segundos : ");
     Serial.println(r->reloj.Segundos);
 }
+
+Blink::Blink(Mostrar *mostrar, Temporizador *actual)
+{
+    _mostrar = mostrar;
+    TempActual = actual;
+}
+
+void Blink::Seconds()
+{
+    _mostrar->ShowHour();
+    _mostrar->ShowMinutes();
+
+    _mostrar->PorLcd(TempActual);
+    _myCnt++;
+
+    if (_myCnt == 2)
+        _mostrar->ShowSeconds();
+    else if (_myCnt == 3)
+    {
+        _mostrar->HiddenSeconds();
+        _myCnt = 0;
+    }
+}
+
+void Blink::Minutes()
+{
+    _mostrar->ShowSeconds();
+    _mostrar->ShowHour();
+
+    _mostrar->PorLcd(TempActual);
+    _myCnt++;
+
+    if (_myCnt == 2)
+        _mostrar->ShowMinutes();
+    else if (_myCnt == 3)
+    {
+        _mostrar->HiddenMinutes();
+        _myCnt = 0;
+    }
+}
+
+void Blink::Hour()
+{
+
+    _mostrar->ShowSeconds();
+    _mostrar->ShowMinutes();
+
+    _mostrar->PorLcd(TempActual);
+    _myCnt++;
+
+    if (_myCnt == 2)
+        _mostrar->ShowHour();
+    else if (_myCnt == 3)
+    {
+        _mostrar->HiddenHour();
+        _myCnt = 0;
+    }
+}

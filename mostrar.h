@@ -29,3 +29,18 @@ public:
 
   void PorSerial(Temporizador *r);
 };
+
+class Blink
+{
+private:
+  Mostrar *_mostrar;
+  int _myCnt = 0;
+  Temporizador *TempActual;
+
+public:
+  Blink(Mostrar *mostrar, Temporizador *actual);
+
+  void Seconds();
+  void Minutes();
+  void Hour();
+};

@@ -75,72 +75,8 @@ void listTimerConfig()
   btnOk();
 }
 
-class Blink
-{
-private:
-  Mostrar *_mostrar;
-  int _myCnt = 0;
 
-public:
-  Blink(Mostrar *mostrar)
-  {
-    _mostrar = mostrar;
-  }
-
-  void Seconds()
-  {
-    _mostrar->ShowHour();
-    _mostrar->ShowMinutes();
-
-    _mostrar->PorLcd(Actual());
-    _myCnt++;
-
-    if (_myCnt == 2)
-      _mostrar->ShowSeconds();
-    else if (_myCnt == 3)
-    {
-      _mostrar->HiddenSeconds();
-      _myCnt = 0;
-    }
-  }
-
-  void Minutes()
-  {
-    _mostrar->ShowSeconds();
-    _mostrar->ShowHour();
-
-    _mostrar->PorLcd(Actual());
-    _myCnt++;
-
-    if (_myCnt == 2)
-      _mostrar->ShowMinutes();
-    else if (_myCnt == 3)
-    {
-      _mostrar->HiddenMinutes();
-      _myCnt = 0;
-    }
-  }
-
-  void Hour()
-  {
-
-    _mostrar->ShowSeconds();
-    _mostrar->ShowMinutes();
-
-    _mostrar->PorLcd(Actual());
-    _myCnt++;
-
-    if (_myCnt == 2)
-      _mostrar->ShowHour();
-    else if (_myCnt == 3)
-    {
-      _mostrar->HiddenHour();
-      _myCnt = 0;
-    }
-  }
-};
-
-Blink myblink(&mostrar);
+Blink myblink(&mostrar, Actual());
 
 void EditTemp()
 {
