@@ -87,6 +87,21 @@ void listTimerConfig()
 
 Blink myblink(&mostrar, Actual());
 
+void editarSegundos()
+{
+  myblink.Seconds();
+
+  if (btnIncremento.click())
+  {
+    Actual()->IncSegundos();
+  }
+
+  if (btnDecremento.click())
+  {
+    Actual()->DecSegundos();
+  }
+}
+
 void EditTemp()
 {
   if (editTemp)
@@ -94,18 +109,7 @@ void EditTemp()
     switch (blinkCnt.getContador())
     {
     case 0:
-      myblink.Seconds();
-
-      if (btnIncremento.click())
-      {
-        Actual()->IncSegundos();
-      }
-
-      if (btnDecremento.click())
-      {
-        Actual()->DecSegundos();
-      }
-
+      editarSegundos();
       break;
     case 1:
       myblink.Minutes();
