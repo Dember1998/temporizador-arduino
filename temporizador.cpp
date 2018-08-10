@@ -74,6 +74,15 @@ void Temporizador::IncMinutos()
     }
 }
 
+void Temporizador::DecMinutos()
+{
+    reloj.Minutos--;
+    if (reloj.Minutos < 0)
+    {
+        reloj.Minutos = 59;
+    }
+}
+
 void Temporizador::Restaurar()
 {
     Reloj relojTemporal;

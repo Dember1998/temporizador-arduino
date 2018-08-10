@@ -27,7 +27,8 @@ public:
 
   void IncSegundos();
   void DecSegundos();
-  
+
   void IncMinutos();
+  void DecMinutos();
 };
 #endif
