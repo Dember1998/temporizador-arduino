@@ -29,7 +29,7 @@ void setup()
 
   setPinMode();
 
-  mostrar.PorSerial(*Actual());
+  mostrar.PorSerial(Actual());
   mostrar.PorLcd(Actual());
   attachInterrupt(digitalPinToInterrupt(intPin), interruption, CHANGE);
 }
@@ -192,14 +192,14 @@ void changeTemp()
   {
     delay_btn();
     cambiarCnt++;
-    mostrar.PorSerial(*Actual());
+    mostrar.PorSerial(Actual());
   }
 
   if (digitalRead(btnDecremento) == HIGH)
   {
     delay_btn();
     cambiarCnt--;
-    mostrar.PorSerial(*Actual());
+    mostrar.PorSerial(Actual());
   }
 }
 

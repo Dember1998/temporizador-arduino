@@ -72,18 +72,18 @@ void Mostrar::HiddenHour()
     _showHour = false;
 }
 
-void Mostrar::PorSerial(Temporizador r)
+void Mostrar::PorSerial(Temporizador *r)
 {
     Serial.print("Temporizador ");
-    Serial.print(r.getInstancia());
+    Serial.print(r->getInstancia());
     Serial.print("-> ");
 
     Serial.print(" horas : ");
-    Serial.print(r.reloj.Horas);
+    Serial.print(r->reloj.Horas);
 
     Serial.print(" minutos : ");
-    Serial.print(r.reloj.Minutos);
+    Serial.print(r->reloj.Minutos);
 
     Serial.print(" segundos : ");
-    Serial.println(r.reloj.Segundos);
+    Serial.println(r->reloj.Segundos);
 }

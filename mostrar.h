@@ -27,5 +27,5 @@ public:
   void HiddenHour();
   void ShowHour();
 
-  void PorSerial(Temporizador r);
+  void PorSerial(Temporizador *r);
 };
