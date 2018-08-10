@@ -47,6 +47,14 @@ void Temporizador::decrementar()
         reloj.Horas = 0;
 }
 
+void Temporizador::IncSegundos() {
+    reloj.Segundos++;
+    if (reloj.Segundos > 59)
+    {
+        reloj.Segundos = 0;
+    }
+}
+
 void Temporizador::Restaurar()
 {
     Reloj relojTemporal;

@@ -104,6 +104,10 @@ void EditTemp()
       break;
     }
   }
+
+  if(btnIncremento.click()) {
+    Actual()->IncSegundos();
+  }
 }
 
 void btnOk()

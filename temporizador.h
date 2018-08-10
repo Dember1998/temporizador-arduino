@@ -24,5 +24,7 @@ public:
   void IniciarDetener();
 
   void decrementar();
+
+  void IncSegundos();
 };
 #endif
