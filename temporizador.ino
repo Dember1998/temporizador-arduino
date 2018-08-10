@@ -2,6 +2,7 @@
 #include "contador.h"
 #include "temporizador.h"
 #include "mostrar.h"
+#include "btn.h"
 
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 
@@ -27,42 +28,6 @@ bool
     editTemp = false,
     activar = true;
 
-class Btn
-{
-private:
-  int Pin;
-  bool oldstate;
-
-  void delay_btn()
-  {
-    delay(50);
-  }
-
-public:
-  Btn(int pin, String mode = "input")
-  {
-    Pin = pin;
-    pinMode(pin, INPUT);
-  }
-
-  bool click()
-  {
-    if (digitalRead(Pin) == HIGH)
-    {
-      this->delay_btn();
-      oldstate = true;
-    }
-
-    if (oldstate && digitalRead(Pin) == LOW)
-    {
-      this->delay_btn();
-      oldstate = false;
-      return true;
-    }
-
-    return false;
-  }
-};
 
 Btn btnMenuOk(12),
     btnIncremento(11),
