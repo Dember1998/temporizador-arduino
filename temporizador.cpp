@@ -10,7 +10,9 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
 }
 
 Temporizador::Temporizador() {
-    
+    reloj.Segundos = 0;
+    reloj.Minutos = 0;
+    reloj.Horas = 0;
 }
 
 int Temporizador::NInstancia = 1;
