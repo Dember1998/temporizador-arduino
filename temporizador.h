@@ -4,6 +4,13 @@
 #include "reloj.h"
 #include <EEPROM.h>
 
+struct StructReloj
+{
+  byte Segundos;
+  byte Minutos;
+  byte Horas;
+};
+
 class Temporizador : private Reloj
 {
 private:
