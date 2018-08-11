@@ -68,7 +68,6 @@ void setTimer()
   editTemp = true;
   if (btnMenuOk.click())
   {
-    delay_btn();
     blinkCnt++;
   }
 }
@@ -116,20 +115,13 @@ void btnOk()
 {
   if (btnMenuOk.click())
   {
-    delay_btn();
     lcd.clear();
     programa++;
   }
 }
 
-void delay_btn()
-{
-  delay(300);
-}
-
 void changeTemp()
 {
-
   if (btnIncremento.click())
   {
     cambiarCnt++;
@@ -138,7 +130,6 @@ void changeTemp()
 
   if (btnDecremento.click())
   {
-    delay_btn();
     cambiarCnt--;
     mostrar.PorSerial(Actual());
   }
@@ -149,7 +140,6 @@ void listTimer()
   mostrar.PorLcd(Actual());
   if (btnIniciar.click())
   {
-    delay_btn();
     Actual()->IniciarDetener();
   }
 
