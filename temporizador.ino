@@ -10,11 +10,11 @@
 LiquidCrystal lcd(8, 7, 6, 5, 4, 3);
 
 Temporizador
-    temp1(0, 0, 20),
-    temp2(0, 1, 3),
-    temp3(0, 1, 2),
-    temp4(0, 1, 0),
-    listTemporizadores[] = {temp1, temp2, temp3, temp4};
+    temp1,
+    temp2,
+    temp3,
+    temp4,
+    *listTemporizadores[] = {&temp1, &temp2, &temp3, &temp4};
 
 Contador
     cambiarCnt(3),
@@ -163,7 +163,7 @@ void listTimer()
 
 Temporizador *Actual()
 {
-  return &listTemporizadores[cambiarCnt.getContador()];
+  return listTemporizadores[cambiarCnt.getContador()];
 }
 
 void interruption()
@@ -171,7 +171,7 @@ void interruption()
   // mostrar.PorSerial(Actual());
   for (int list = 0; list < 4; list++)
   {
-    listTemporizadores[list].decrementar();
+    listTemporizadores[list]->decrementar();
   }
 
   EditTemp();
