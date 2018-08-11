@@ -7,7 +7,7 @@
 class Temporizador : private Reloj
 {
 private:
-  int instancias;
+  int instancia;
   bool activar;
   static int NInstancia;
 

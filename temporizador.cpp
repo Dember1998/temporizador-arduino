@@ -6,12 +6,12 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
     Minutos = minutos;
     Horas = horas;
     Restaurar();
-    instancias = NInstancia++;
+    instancia = NInstancia++;
 }
 
 int Temporizador::NInstancia = 1;
 
-int Temporizador::getInstancia() { return instancias; }
+int Temporizador::getInstancia() { return instancia; }
 void Temporizador::IniciarDetener()
 {
     activar = !activar;
@@ -100,7 +100,7 @@ void Temporizador::DecHoras()
 void Temporizador::Restaurar()
 {
     Reloj relojTemporal;
-    EEPROM.get(instancias, relojTemporal);
+    EEPROM.get(instancia, relojTemporal);
 
     if (relojTemporal.Segundos > 0 && relojTemporal.Minutos > 0 && relojTemporal.Horas > 0)
     {
@@ -116,5 +116,5 @@ void Temporizador::Restaurar()
 
 void Temporizador::save()
 {
-    EEPROM.put(instancias, reloj);
+    EEPROM.put(instancia, reloj);
 }
