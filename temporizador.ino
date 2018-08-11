@@ -30,9 +30,7 @@ Mostrar mostrar(&lcd);
 
 const int intPin = 2;
 
-bool
-    editTemp = false,
-    activar = true;
+bool activar = true;
 
 void setup()
 {
@@ -65,10 +63,15 @@ void loop()
 
 void setTimer()
 {
-  editTemp = true;
   if (btnMenuOk.click())
   {
     blinkCnt++;
+  }
+
+  if (btnIniciar.click())
+  {
+    lcd.clear();
+    programa--;
   }
 }
 
@@ -94,7 +97,7 @@ EditarTemporizador editarTemp(
 
 void EditTemp()
 {
-  if (editTemp)
+  if (programa.getContador() == 2)
   {
     switch (blinkCnt.getContador())
     {

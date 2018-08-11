@@ -35,7 +35,7 @@ class EditarTemporizador
             TempActual->IncSegundos();
         }
 
-        if (BtnDecremento->click())
+        if (BtnDecremento->click()) 
         {
             TempActual->DecSegundos();
         }
