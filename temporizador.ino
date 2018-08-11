@@ -68,11 +68,7 @@ void setTimer()
     blinkCnt++;
   }
 
-  if (btnIniciar.click())
-  {
-    lcd.clear();
-    programa--;
-  }
+  LastProgram();
 }
 
 void listTimerConfig()
@@ -86,6 +82,7 @@ void listTimerConfig()
   changeTemp();
 
   NextPrograma();
+  LastProgram();
 }
 
 Blink myblink(&mostrar, Actual());
@@ -120,6 +117,15 @@ void NextPrograma()
   {
     lcd.clear();
     programa++;
+  }
+}
+
+void LastProgram()
+{
+  if (btnIniciar.click())
+  {
+    lcd.clear();
+    programa--;
   }
 }
 
