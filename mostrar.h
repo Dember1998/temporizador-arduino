@@ -45,5 +45,7 @@ public:
   void Seconds();
   void Minutes();
   void Hour();
+
+  void restore();
 };
 #endif

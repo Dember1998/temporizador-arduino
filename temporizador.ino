@@ -109,6 +109,10 @@ void EditTemp()
       break;
     }
   }
+  else
+  {
+    editarTemp.restore();
+  }
 }
 
 void NextPrograma()

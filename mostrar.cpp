@@ -130,7 +130,6 @@ void Blink::Minutes()
 
 void Blink::Hour()
 {
-
     _mostrar->ShowSeconds();
     _mostrar->ShowMinutes();
 
@@ -144,4 +143,11 @@ void Blink::Hour()
         _mostrar->HiddenHour();
         _myCnt = 0;
     }
+}
+
+void Blink::restore()
+{
+    _mostrar->ShowSeconds();
+    _mostrar->ShowMinutes();
+    _mostrar->ShowHour();
 }
