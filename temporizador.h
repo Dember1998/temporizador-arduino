@@ -19,6 +19,7 @@ private:
   static int NInstancia;
 
 public:
+  Temporizador();
   Temporizador(int horas, int minutos, int segundos);
 
   Reloj reloj;
