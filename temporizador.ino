@@ -85,7 +85,7 @@ void listTimerConfig()
 
   changeTemp();
 
-  btnOk();
+  NextPrograma();
 }
 
 Blink myblink(&mostrar, Actual());
@@ -114,7 +114,7 @@ void EditTemp()
   }
 }
 
-void btnOk()
+void NextPrograma()
 {
   if (btnMenuOk.click())
   {
@@ -148,7 +148,7 @@ void listTimer()
 
   changeTemp();
 
-  btnOk();
+  NextPrograma();
 }
 
 Temporizador *Actual()
