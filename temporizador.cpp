@@ -9,6 +9,10 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
     instancia = NInstancia++;
 }
 
+Temporizador::Temporizador() {
+    
+}
+
 int Temporizador::NInstancia = 1;
 
 int Temporizador::getInstancia() { return instancia; }
