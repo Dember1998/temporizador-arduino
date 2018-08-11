@@ -76,9 +76,9 @@ void setTimer()
 void listTimerConfig()
 {
   lcd.setCursor(1, 0);
-  lcd.print("configurar");
+  lcd.print("CONFIGURAR");
   lcd.setCursor(1, 1);
-  lcd.print("temporizador ");
+  lcd.print("TEMPORIZADOR ");
   lcd.print(Actual()->getInstancia());
 
   changeTemp();

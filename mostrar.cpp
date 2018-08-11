@@ -16,12 +16,12 @@ Mostrar::Mostrar(LiquidCrystal *mylcd)
 void Mostrar::PorLcd(Temporizador *t)
 {
     // fila 0 "Temporizador 1"
-    lcd->setCursor(0, 0);
-    lcd->print("Temporizador ");
+    lcd->setCursor(1, 0);
+    lcd->print("TEMPORIZADOR ");
     lcd->print(t->getInstancia());
 
     // fila 1 "00:00:12"
-    lcd->setCursor(0, 1);
+    lcd->setCursor(4, 1);
     if (_showHour)
         ver(t->reloj.Horas);
     else
