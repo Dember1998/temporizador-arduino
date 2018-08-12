@@ -9,10 +9,14 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
     instancia = NInstancia++;
 }
 
-Temporizador::Temporizador() {
-    reloj.Segundos = 0;
-    reloj.Minutos = 0;
-    reloj.Horas = 0;
+Temporizador::Temporizador()
+{
+    StructReloj myReloj;
+    EEPROM.get(1, myReloj);
+
+    reloj.Segundos = myReloj.Segundos;
+    reloj.Minutos = myReloj.Minutos;
+    reloj.Horas = myReloj.Horas;
 }
 
 int Temporizador::NInstancia = 1;
@@ -108,16 +112,16 @@ void Temporizador::Restaurar()
     Reloj relojTemporal;
     EEPROM.get(instancia, relojTemporal);
 
-   // if (relojTemporal.Segundos > 0 && relojTemporal.Minutos > 0 && relojTemporal.Horas > 0)
-  //  {
-       // reloj = relojTemporal;
- //   }
- //   else
- //   {
-        reloj.Segundos = Segundos;
-        reloj.Minutos = Minutos;
-        reloj.Horas = Horas;
- //   }
+    // if (relojTemporal.Segundos > 0 && relojTemporal.Minutos > 0 && relojTemporal.Horas > 0)
+    //  {
+    // reloj = relojTemporal;
+    //   }
+    //   else
+    //   {
+    reloj.Segundos = Segundos;
+    reloj.Minutos = Minutos;
+    reloj.Horas = Horas;
+    //   }
 }
 
 void Temporizador::save()
