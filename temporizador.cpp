@@ -127,5 +127,12 @@ void Temporizador::Restaurar()
 
 void Temporizador::save()
 {
-    EEPROM.put(instancia, reloj);
+    StructReloj myReloj;
+
+    myReloj.Segundos = reloj.Segundos;
+    myReloj.Minutos = reloj.Minutos;
+    myReloj.Horas = reloj.Horas;
+
+    EEPROM.put(instancia, myReloj);
+    Serial.println("datos guardados");
 }

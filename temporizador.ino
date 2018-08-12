@@ -34,9 +34,9 @@ bool activar = true;
 
 void setup()
 {
- //  StructReloj myReloj = {0, 17, 0};
- //  EEPROM.put(4, myReloj);
-  
+  //  StructReloj myReloj = {0, 17, 0};
+  //  EEPROM.put(4, myReloj);
+
   lcd.begin(16, 2);
   Serial.begin(9600);
   pinMode(intPin, INPUT_PULLUP);
@@ -110,6 +110,11 @@ void EditTemp()
     case 2:
       editarTemp.editarHoras();
       break;
+    }
+
+    if (btnMenuOk.click())
+    {
+      Actual()->save();
     }
   }
   else
