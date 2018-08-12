@@ -20,8 +20,7 @@ private:
 
 public:
   Temporizador();
-  Temporizador(int horas, int minutos, int segundos);
-
+  
   Reloj reloj;
 
   void Restaurar();

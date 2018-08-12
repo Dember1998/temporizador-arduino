@@ -1,14 +1,5 @@
 #include "temporizador.h"
 
-Temporizador::Temporizador(int horas, int minutos, int segundos)
-{
-    Segundos = segundos;
-    Minutos = minutos;
-    Horas = horas;
-    Restaurar();
-    instancia = NInstancia++;
-}
-
 Temporizador::Temporizador()
 {
     instancia = NInstancia++;
