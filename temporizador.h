@@ -11,7 +11,7 @@ struct StructReloj
   byte Horas;
 };
 
-class Temporizador : private Reloj
+class Temporizador
 {
 private:
   int instancia;
@@ -20,7 +20,7 @@ private:
 
 public:
   Temporizador();
-  
+
   Reloj reloj;
 
   void Restaurar();
