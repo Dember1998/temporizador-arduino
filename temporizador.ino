@@ -34,8 +34,8 @@ bool activar = true;
 
 void setup()
 {
-  // StructReloj myReloj = {2, 3, 4};
-  // EEPROM.put(1, myReloj);
+ //  StructReloj myReloj = {0, 17, 0};
+ //  EEPROM.put(4, myReloj);
   
   lcd.begin(16, 2);
   Serial.begin(9600);

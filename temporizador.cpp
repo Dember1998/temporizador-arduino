@@ -11,8 +11,9 @@ Temporizador::Temporizador(int horas, int minutos, int segundos)
 
 Temporizador::Temporizador()
 {
+    instancia = NInstancia++;
     StructReloj myReloj;
-    EEPROM.get(1, myReloj);
+    EEPROM.get(instancia, myReloj);
 
     reloj.Segundos = myReloj.Segundos;
     reloj.Minutos = myReloj.Minutos;
