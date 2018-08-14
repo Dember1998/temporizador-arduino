@@ -42,32 +42,32 @@ void Mostrar::PorLcd(Temporizador *t)
         lcd->print("  ");
 }
 
-void Mostrar::HiddenSeconds()
+void BanderasMostrar::HiddenSeconds()
 {
     _showSeconds = false;
 }
 
-void Mostrar::ShowSeconds()
+void BanderasMostrar::ShowSeconds()
 {
     _showSeconds = true;
 }
 
-void Mostrar::HiddenMinutes()
+void BanderasMostrar::HiddenMinutes()
 {
     _showMinutes = false;
 }
 
-void Mostrar::ShowMinutes()
+void BanderasMostrar::ShowMinutes()
 {
     _showMinutes = true;
 }
 
-void Mostrar::ShowHour()
+void BanderasMostrar::ShowHour()
 {
     _showHour = true;
 }
 
-void Mostrar::HiddenHour()
+void BanderasMostrar::HiddenHour()
 {
     _showHour = false;
 }

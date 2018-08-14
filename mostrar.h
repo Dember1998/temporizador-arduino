@@ -4,22 +4,14 @@
 #include <LiquidCrystal.h>
 #include "temporizador.h"
 
-class Mostrar
+class BanderasMostrar
 {
-private:
-  int decenas, unidades;
-  LiquidCrystal *lcd;
+protected:
   bool _showSeconds = true;
   bool _showMinutes = true;
   bool _showHour = true;
 
-  void ver(int tiempo);
-
 public:
-  Mostrar(LiquidCrystal *mylcd);
-
-  void PorLcd(Temporizador *t);
-
   void HiddenSeconds();
   void ShowSeconds();
 
@@ -28,6 +20,20 @@ public:
 
   void HiddenHour();
   void ShowHour();
+};
+
+class Mostrar : public BanderasMostrar
+{
+private:
+  int decenas, unidades;
+  LiquidCrystal *lcd;
+
+  void ver(int tiempo);
+
+public:
+  Mostrar(LiquidCrystal *mylcd);
+
+  void PorLcd(Temporizador *t);
 
   void PorSerial(Temporizador *r);
 };
