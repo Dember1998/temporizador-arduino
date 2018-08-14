@@ -16,14 +16,17 @@ class EditarTemporizador
   public:
     EditarTemporizador(
         Blink *blink,
-        Temporizador *tempActual,
         Btn *btnIncremento,
         Btn *btnDecremento)
     {
         this->blink = blink;
-        TempActual = tempActual;
         BtnIncremento = btnIncremento;
         BtnDecremento = btnDecremento;
+    }
+
+    void getTempActual(Temporizador *tempActual)
+    {
+        TempActual = tempActual;
     }
 
     void editarSegundos()

@@ -47,5 +47,6 @@ public:
   void Hour();
 
   void restore();
+  void getTempActual(Temporizador *actual);
 };
 #endif

@@ -151,3 +151,8 @@ void Blink::restore()
     _mostrar->ShowMinutes();
     _mostrar->ShowHour();
 }
+
+void Blink::getTempActual(Temporizador *actual)
+{
+    TempActual = actual;
+}

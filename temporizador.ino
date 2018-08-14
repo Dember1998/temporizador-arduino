@@ -28,6 +28,17 @@ Btn btnIniciar(13),
 
 Mostrar mostrar(&lcd);
 
+Temporizador *Actual()
+{
+  return listTemporizadores[cambiarCnt.getContador()];
+}
+
+Blink myblink(&mostrar, Actual());
+EditarTemporizador editarTemp(
+    &myblink,
+    &btnIncremento,
+    &btnDecremento);
+
 const int intPin = 2;
 
 bool activar = true;
@@ -84,16 +95,16 @@ void listTimerConfig()
 
   changeTemp();
 
-  NextPrograma();
+  if (btnMenuOk.click())
+  {
+    editarTemp.getTempActual(Actual());
+    myblink.getTempActual(Actual());
+    lcd.clear();
+    programa++;
+  }
+
   LastProgram();
 }
-
-Blink myblink(&mostrar, Actual());
-EditarTemporizador editarTemp(
-    &myblink,
-    Actual(),
-    &btnIncremento,
-    &btnDecremento);
 
 void EditTemp()
 {
@@ -167,11 +178,6 @@ void listTimer()
   changeTemp();
 
   NextPrograma();
-}
-
-Temporizador *Actual()
-{
-  return listTemporizadores[cambiarCnt.getContador()];
 }
 
 void interruption()
