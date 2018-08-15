@@ -1,5 +1,5 @@
 #include "mostrar.h"
-
+// --------------- class Mostrar ----------------------
 void Mostrar::ver(int tiempo)
 {
     decenas = tiempo / 10;
@@ -42,6 +42,24 @@ void Mostrar::PorLcd(Temporizador *t)
         lcd->print("  ");
 }
 
+void Mostrar::PorSerial(Temporizador *r)
+{
+    Serial.print("Temporizador ");
+    Serial.print(r->getInstancia());
+    Serial.print("-> ");
+
+    Serial.print(" horas : ");
+    Serial.print(r->reloj.Horas);
+
+    Serial.print(" minutos : ");
+    Serial.print(r->reloj.Minutos);
+
+    Serial.print(" segundos : ");
+    Serial.println(r->reloj.Segundos);
+}
+
+//-------------class BanderasMostrar---------------------
+
 void BanderasMostrar::HiddenSeconds()
 {
     _showSeconds = false;
@@ -72,21 +90,7 @@ void BanderasMostrar::HiddenHour()
     _showHour = false;
 }
 
-void Mostrar::PorSerial(Temporizador *r)
-{
-    Serial.print("Temporizador ");
-    Serial.print(r->getInstancia());
-    Serial.print("-> ");
-
-    Serial.print(" horas : ");
-    Serial.print(r->reloj.Horas);
-
-    Serial.print(" minutos : ");
-    Serial.print(r->reloj.Minutos);
-
-    Serial.print(" segundos : ");
-    Serial.println(r->reloj.Segundos);
-}
+// ----------------class Blink----------------------
 
 Blink::Blink(Mostrar *mostrar, Temporizador *actual)
 {
