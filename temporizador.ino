@@ -33,7 +33,7 @@ Temporizador *Actual()
   return listTemporizadores[cambiarCnt.getContador()];
 }
 
-Blink myblink(&mostrar, Actual());
+Blink myblink(&mostrar, Actual(), &lcd);
 EditarTemporizador editarTemp(
     &myblink,
     &btnIncremento,

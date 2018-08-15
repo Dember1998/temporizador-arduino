@@ -109,7 +109,7 @@ void BanderasMostrar::HiddenHour()
 
 // ----------------class Blink----------------------
 
-Blink::Blink(Mostrar *mostrar, Temporizador *actual)
+Blink::Blink(Mostrar *mostrar, Temporizador *actual, LiquidCrystal *mylcd)
 {
     _mostrar = mostrar;
     TempActual = actual;

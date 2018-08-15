@@ -51,7 +51,7 @@ private:
   Temporizador *TempActual;
 
 public:
-  Blink(Mostrar *mostrar, Temporizador *actual);
+  Blink(Mostrar *mostrar, Temporizador *actual, LiquidCrystal *mylcd);
 
   void Seconds();
   void Minutes();
