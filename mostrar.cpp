@@ -13,33 +13,50 @@ Mostrar::Mostrar(LiquidCrystal *mylcd)
     lcd = mylcd;
 }
 
+void Mostrar::verHoras()
+{
+    if (_showHour)
+        ver(Temp_Actual->reloj.Horas);
+    else
+        lcd->print("  ");
+}
+
+void Mostrar::verMinutos()
+{
+    if (_showMinutes)
+        ver(Temp_Actual->reloj.Minutos);
+    else
+        lcd->print("  ");
+}
+
+void Mostrar::verSegundos()
+{
+    if (_showSeconds)
+        ver(Temp_Actual->reloj.Segundos);
+    else
+        lcd->print("  ");
+}
+
 void Mostrar::PorLcd(Temporizador *t)
 {
     // fila 0 "Temporizador 1"
+    Temp_Actual = t;
     lcd->setCursor(1, 0);
     lcd->print("TEMPORIZADOR ");
     lcd->print(t->getInstancia());
 
     // fila 1 "00:00:12"
     lcd->setCursor(4, 1);
-    if (_showHour)
-        ver(t->reloj.Horas);
-    else
-        lcd->print("  ");
+
+    verHoras();
 
     lcd->print(":");
 
-    if (_showMinutes)
-        ver(t->reloj.Minutos);
-    else
-        lcd->print("  ");
+    verMinutos();
 
     lcd->print(":");
 
-    if (_showSeconds)
-        ver(t->reloj.Segundos);
-    else
-        lcd->print("  ");
+    verSegundos();
 }
 
 void Mostrar::PorSerial(Temporizador *r)

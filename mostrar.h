@@ -27,8 +27,13 @@ class Mostrar : public BanderasMostrar
 private:
   int decenas, unidades;
   LiquidCrystal *lcd;
+  Temporizador *Temp_Actual;
 
   void ver(int tiempo);
+
+  void verSegundos();
+  void verMinutos();
+  void verHoras();
 
 public:
   Mostrar(LiquidCrystal *mylcd);
