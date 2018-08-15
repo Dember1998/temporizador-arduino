@@ -43,15 +43,17 @@ public:
   void PorSerial(Temporizador *r);
 };
 
-class Blink
+class Blink : public Mostrar
 {
 private:
-  Mostrar *_mostrar;
   int _myCnt = 0;
   Temporizador *TempActual;
 
 public:
-  Blink(Mostrar *mostrar, Temporizador *actual, LiquidCrystal *mylcd);
+  Blink::Blink(Temporizador *actual, LiquidCrystal *mylcd) : Mostrar(mylcd)
+  {
+    TempActual = actual;
+  }
 
   void Seconds();
   void Minutes();

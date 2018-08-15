@@ -109,68 +109,62 @@ void BanderasMostrar::HiddenHour()
 
 // ----------------class Blink----------------------
 
-Blink::Blink(Mostrar *mostrar, Temporizador *actual, LiquidCrystal *mylcd)
-{
-    _mostrar = mostrar;
-    TempActual = actual;
-}
-
 void Blink::Seconds()
 {
-    _mostrar->ShowHour();
-    _mostrar->ShowMinutes();
+    ShowHour();
+    ShowMinutes();
 
-    _mostrar->PorLcd(TempActual);
+    PorLcd(TempActual);
     _myCnt++;
 
     if (_myCnt == 2)
-        _mostrar->ShowSeconds();
+        ShowSeconds();
     else if (_myCnt == 3)
     {
-        _mostrar->HiddenSeconds();
+        HiddenSeconds();
         _myCnt = 0;
     }
 }
 
 void Blink::Minutes()
 {
-    _mostrar->ShowSeconds();
-    _mostrar->ShowHour();
+    ShowSeconds();
+    ShowHour();
 
-    _mostrar->PorLcd(TempActual);
+    PorLcd(TempActual);
     _myCnt++;
 
     if (_myCnt == 2)
-        _mostrar->ShowMinutes();
+        ShowMinutes();
     else if (_myCnt == 3)
     {
-        _mostrar->HiddenMinutes();
+        HiddenMinutes();
         _myCnt = 0;
     }
 }
 
 void Blink::Hour()
 {
-    _mostrar->ShowSeconds();
-    _mostrar->ShowMinutes();
+    ShowSeconds();
+    ShowMinutes();
 
-    _mostrar->PorLcd(TempActual);
+    PorLcd(TempActual);
     _myCnt++;
 
     if (_myCnt == 2)
-        _mostrar->ShowHour();
+        ShowHour();
     else if (_myCnt == 3)
     {
-        _mostrar->HiddenHour();
+        HiddenHour();
         _myCnt = 0;
     }
 }
 
 void Blink::restore()
 {
-    _mostrar->ShowSeconds();
-    _mostrar->ShowMinutes();
-    _mostrar->ShowHour();
+    ShowSeconds();
+    ShowMinutes();
+    ShowHour();
 }
 
 void Blink::getTempActual(Temporizador *actual)
